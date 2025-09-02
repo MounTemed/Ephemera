@@ -1,0 +1,19 @@
+- name: Updating the system and restarting it
+  hosts: unstable 
+  become: true
+
+  tasks:
+    - name: We update all packages 
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+
+    - name: Reboot system
+      ansible.builtin.reboot:
+        reboot_timeout: 300
+
+    - name: 
+      ansible.builtin.debug:
+        msg:
+        - "Happy using!"
+

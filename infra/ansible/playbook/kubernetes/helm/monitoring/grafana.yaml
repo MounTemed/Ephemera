@@ -1,0 +1,16 @@
+- name: Installing grafana in a cluster
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Add Grafana chart repository to Helm 
+      kubernetes.core.helm_repository: 
+        name: grafana
+        repo_url: https://grafana.github.io/helm-charts
+
+    - name: Install Grafana
+      kubernetes.core.helm: 
+        name: grafana
+        chart_ref: grafana/grafana
+        release_namespace: nm-monitoring
+        create_namespace: true

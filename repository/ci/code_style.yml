@@ -1,0 +1,52 @@
+install-packages:
+  stage: packages
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "pacman -S ansible-lint yamllint terraform tflint kubeconform gitlab-lint" #FIXME gitlab-lint
+
+# ansible
+ansible-lint:
+  stage: ansible-lint
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "ansible-lint ./* --check" #FIXME ALL
+
+yamllint:
+  stage: yamllint
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "yamllint ./* --check"
+
+# terraform
+terraform-fmt:
+  stage: terraform-fmt
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "terraform-fmt ./* --check"
+
+tf-lint:
+  stage: tf-lint
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "tf-lint ./* --check"
+
+# kubernetes
+kubeconfrom:
+  stage: kubeconfrom
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "kubeconfrom ./* --check"
+
+# gitlab
+gitlab-lint:
+  stage: gitlab-lint
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV4 "gitlab-lint ./* --check"

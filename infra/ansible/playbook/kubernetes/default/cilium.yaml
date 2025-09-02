@@ -1,0 +1,26 @@
+- name: Install and deploy Cilium
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Download cilium-cli archive
+      ansible.builtin.get_url:
+        url: https://github.com/cilium/cilium-cli/releases/latest/download/cilium-linux-amd64.tar.gz
+        dest: /tmp/cilium-linux-amd64.tar.gz
+        mode: '0644'
+
+    - name: Extract cilium-cli to /usr/local/bin
+      ansible.builtin.unarchive:
+        src: /tmp/cilium-linux-amd64.tar.gz
+        dest: /usr/local/bin
+        remote_src: true
+
+    - name: Remove cilium-cli archive
+      ansible.builtin.file:
+        path: /tmp/cilium-linux-amd64.tar.gz
+        state: absent
+
+    - name: Install Cilium into the cluster
+      ansible.builtin.shell: /usr/local/bin/cilium install
+
+

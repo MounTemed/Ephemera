@@ -1,0 +1,19 @@
+moscow:
+  children:
+    peaceful:
+      children:
+        production:
+          hosts:
+            host1:
+              ansible_host: 176.98.177.219
+              ansible_user: root
+        tested:
+          hosts:
+            host1:
+              ansible_host: 176.98.177.219
+              ansible_user: root
+        unstable: 
+          hosts:
+            host1:
+              ansible_host: 5.129.242.3
+              ansible_user: root

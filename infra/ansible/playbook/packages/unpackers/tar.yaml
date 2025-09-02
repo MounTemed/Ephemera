@@ -1,0 +1,9 @@
+- name: Installing tar
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Install tar
+      ansible.builtin.dnf:
+        name: tar
+        state: latest

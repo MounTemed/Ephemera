@@ -1,0 +1,11 @@
+- name: Adding a new user 
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: New user without root rights
+      ansible.builtin.user:
+        name: user 
+        create_home: true
+        shell: /bin/bash
+        uid: 1000

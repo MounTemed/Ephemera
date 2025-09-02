@@ -1,0 +1,15 @@
+- name: Installing Prometheus in a cluster
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Add Prometheus chart repository to Helm 
+      kubernetes.core.helm_repository: 
+        name: prometheus
+        repo_url: https://prometheus-community.github.io/helm-charts
+
+    - name: Install Prometheus
+      kubernetes.core.helm: 
+        name: prometheus
+        chart_ref: prometheus/prometheus
+        release_namespace: nm-monitoring

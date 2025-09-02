@@ -1,0 +1,34 @@
+- name: Installing grafana in a cluster
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Add Grafana chart repository to Helm 
+      kubernetes.core.helm_repository: 
+        name: elastic
+        repo_url: https://helm.elastic.co
+
+    - name: Install eck-stack
+      kubernetes.core.helm: 
+        name: eck-stack
+        chart_ref: elastic/eck-stack
+        release_namespace: nm-elk
+        create_namespace: true
+
+    - name: Install eck-elasticsearch
+      kubernetes.core.helm: 
+        name: eck-elasticsearch
+        chart_ref: elastic/eck-elasticsearch
+        release_namespace: nm-elk
+
+    - name: Install eck-kibana
+      kubernetes.core.helm: 
+        name: eck-kibana
+        chart_ref: elastic/eck-kibana
+        release_namespace: nm-elk
+
+    - name: Install eck-agent
+      kubernetes.core.helm: 
+        name: eck-agent
+        chart_ref: elastic/eck-agent
+        release_namespace: nm-elk

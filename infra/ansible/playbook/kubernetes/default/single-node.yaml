@@ -1,0 +1,8 @@
+- name: Single node cluster setup
+  hosts: unstable
+  become: true 
+
+  tasks:
+    - name: Untaint control plane nodes
+      ansible.builtin.shell: kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+

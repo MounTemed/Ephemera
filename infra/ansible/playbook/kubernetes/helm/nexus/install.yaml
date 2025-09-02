@@ -1,0 +1,16 @@
+- name: Installing Nexus in a cluster
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Add Nexus chart repository to Helm 
+      kubernetes.core.helm_repository: 
+        name: nexus
+        repo_url: https://sonatype.github.io/helm3-charts/ 
+
+    - name: Install Nexus
+      kubernetes.core.helm: 
+        name: nexus 
+        chart_ref: nexus/nexus-repository-manager 
+        release_namespace: nm-nexus
+        create_namespace: true

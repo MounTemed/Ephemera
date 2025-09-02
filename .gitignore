@@ -1,0 +1,10 @@
+# terraform
+*.terraform/
+*.terraform.lock.hcl
+*.backup
+*.tfstate
+*.tfvars
+infra/terraform/tfplan
+
+# ansible
+data/ansible-log.txt

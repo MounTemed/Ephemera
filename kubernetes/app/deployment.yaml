@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ephemera
+  namespace: nm-ephemera
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ephemera
+  template:
+    metadata:
+      labels:
+        app: ephemera
+    spec:
+      containers:
+      - name: ephemera
+        image: docker.io/laimick/ephemera:latest
+        ports:
+        - containerPort: 8080
+          name: ephemera
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 20

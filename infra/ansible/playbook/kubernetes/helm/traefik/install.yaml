@@ -1,0 +1,17 @@
+- name: Install traefik in cluster
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Add Traefik Labs chart repository to Helm
+      kubernetes.core.helm_repository:
+        name: traefik
+        repo_url: https://traefik.github.io/charts
+
+    - name: Install traefik
+      kubernetes.core.helm: 
+        name: traefik
+        chart_ref: traefik/traefik
+        release_namespace: nm-traefik
+        create_namespace: true
+

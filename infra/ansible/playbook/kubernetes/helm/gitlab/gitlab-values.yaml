@@ -1,0 +1,8 @@
+global:
+  hosts:
+    domain: gitlab.lune.su
+  ingress:
+    configureCertmanager: true
+    tls:
+      enabled: false
+  edition: ce

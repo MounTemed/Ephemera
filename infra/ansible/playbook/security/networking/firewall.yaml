@@ -1,0 +1,81 @@
+- name: Firewall setup
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Enabled firewalld service
+      ansible.builtin.systemd_service:
+        name: firewalld
+        enabled: true
+
+    - name: Allow TCP/Kubernetes API server
+      ansible.posix.firewalld:
+        port: 6443/tcp
+        permanent: true
+        state: enabled
+
+    - name: Allow TCP/etcd server client API
+      ansible.posix.firewalld:
+        port: 2379-2380/tcp
+        permanent: true
+        state: enabled
+
+    - name: Enable TCP/Kubelet API
+      ansible.posix.firewalld:
+        port: 10250/tcp
+        permanent: true
+        state: enabled
+
+    - name: Allow TCP/kube-scheduler
+      ansible.posix.firewalld:
+        port: 10259/tcp
+        permanent: true
+        state: enabled
+
+    - name: Allow TCP/kube-controller-manager
+      ansible.posix.firewalld:
+        port: 10257/tcp
+        permanent: true
+        state: enabled
+
+    - name: Allow TCP/kube-proxy
+      ansible.posix.firewalld:
+        port: 10256/tcp
+        permanent: true
+        state: enabled
+
+    - name: Enable TCP/NodePort Services†
+      ansible.posix.firewalld:
+        port: 30000-32767/tcp
+        permanent: true
+        state: enabled
+
+    - name: Allow TCP/https
+      ansible.posix.firewalld:
+        port: 443/tcp
+        permanent: true
+        state: enabled
+
+    - name: Allow UDP/NodePort Services†
+      ansible.posix.firewalld:
+        port: 30000-32767/udp
+        permanent: true
+        state: enabled
+
+    - name: Disable TCP/80
+      ansible.posix.firewalld:
+        port: 80/tcp
+        permanent: true
+        state: disabled
+
+    - name: Disable TCP/8080
+      ansible.posix.firewalld:
+        port: 8080/tcp
+        permanent: true
+        state: disabled
+
+    - name: Disable TCP/22
+      ansible.posix.firewalld:
+        port: 22/tcp
+        permanent: true
+        state: disabled

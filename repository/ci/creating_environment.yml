@@ -1,0 +1,57 @@
+image:
+  name: docker.io/hashicorp/terraform:1.13
+  entrypoint:
+    - "/usr/bin/env"
+
+ssh-key:
+  stage: ssh
+  script:
+    - ssh-keygen -t ed25519 -C "gitlab-ci" -f ./gitlab-ci-key -N ""
+    - cat gitlab-ci-key.pub >> ~/.ssh/authorized_keys
+
+before_cd:
+  - cd ./infra/terraform/
+
+validate-tf:
+  stage: validate
+  script:
+    - terraform init
+    - terraform fmt -check
+    - echo $terraform_token_timeweb >> ./secret.auto.tfvars
+    - terraform validate
+  artifacts:
+    paths:
+      - secret.auto.tfvars
+
+create-vps:
+  stage: create
+  script:
+    - terraform plan
+    - terraform apply -auto-approve
+  artifacts:
+    paths:
+      - .terraform/
+      - terraform.tfstate
+      - secret.auto.tfvars
+
+getting-ipv4:
+  stage: env
+  script:
+    - export IPV4=$(terraform output -raw public_ip)
+    - echo "IPV$=$IPV4" >> variables.env
+  artifacts:
+    reports:
+      dotenv: variables.env
+  needs: ["create-vps"]
+
+vpc-removal:
+  stage: destroy
+  script:
+    - terraform destroy -auto-approve
+  artifacts:
+    paths:
+      - .terraform/
+      - terraform.tfstate
+      - secret.auto.tfvars
+  when: always
+  needs: ["create-vps"]

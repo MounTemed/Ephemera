@@ -1,0 +1,19 @@
+- name: Loading python and after the Kubernetes library 
+  hosts: unstable
+  become: true
+
+  tasks:
+    - name: Install Python 
+      ansible.builtin.dnf:
+        name: python3
+        state: latest
+
+    - name: Install pip 
+      ansible.builtin.dnf:
+        name: python3-pip
+        state: latest
+
+    - name: Install Python Kubernetes library
+      ansible.builtin.pip:
+        name: kubernetes
+

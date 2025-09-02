@@ -1,0 +1,63 @@
+stages:
+  # CREATE VPC
+  - validate
+  - create
+  - env
+
+  # LINT
+  - packages
+  - ansible-lint
+  - yamllint
+  - terraform-fmt
+  - tf-lint
+  - kubeconfrom
+  - gitlab-lint
+
+  # SECURITY
+  - trivy
+  - grype
+  - clair
+  - checkov
+  - kics
+  - terrascan
+  - gitlab-sast
+  - semgrep
+  - snyk
+  - kubespace
+  - kube-bench
+  - cilium-hubble
+
+  # ANSIBLE
+  - playbook
+
+  # ARGOCD-APPSET
+  - appset
+
+  # TESTFULL
+  - app
+
+  # NOTIFY
+  - notify
+
+  # CLEAN
+  - clean
+
+  # CREATE VPC
+  - destroy
+
+  # ---
+
+  # DEPLOY
+  - deploy
+
+include:
+  - local: "ci/creating_environment.yml" # VPC
+  - local: "ci/code_style.yml" # LINT
+  - local: "ci/security_code.yml" # SECURITY
+  - local: "ci/ansible_playbook_check.yml" # PLAYBOOK
+  - local: "ci/argo_appset.yml" # ARGOCD
+  - local: "ci/test_full.yml" # TESTFULL
+  - local: "ci/notify.yml" # NOTIFY
+  - local: "ci/cleanup_all.yml" # CLEAN
+
+  - local: "cd/deploy.yml" # DEPLOY
