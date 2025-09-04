@@ -1,12 +1,11 @@
+---
 - name: Complete installation of ArgoCD
   hosts: unstable
-  become: true 
+  become: true
   vars:
-    manifest_url: "https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"
-    manifest_path: "/home/user/download/install.yaml"
-  vars_files:
-    -  ../../secrets/secrets.yaml
-
+    manifest_url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    manifest_path: /home/user/download/install.yaml
+  vars_files: [../../secrets/secrets.yaml]
   tasks:
     - name: Ensure download directory exists
       ansible.builtin.file:
@@ -26,7 +25,7 @@
         api_version: v1
         kind: Namespace
         state: present
-    
+
     - name: Add to argocd namespace docker hub secret
       ansible.builtin.shell: |
         kubectl create secret docker-registry docker-hub-secret \
@@ -48,7 +47,7 @@
         remote_src: false
 
     - name: We use our argocd-config.yaml
-      kubernetes.core.k8s: 
+      kubernetes.core.k8s:
         state: present
         src: /home/user/argo-config.yaml
         namespace: argocd

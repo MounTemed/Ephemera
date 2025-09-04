@@ -1,3 +1,4 @@
+---
 - name: Installing Helm
   ansible.builtin.import_playbook: ./install.yaml
 

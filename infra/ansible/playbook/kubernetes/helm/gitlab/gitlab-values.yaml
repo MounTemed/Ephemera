@@ -1,3 +1,4 @@
+---
 global:
   hosts:
     domain: gitlab.lune.su

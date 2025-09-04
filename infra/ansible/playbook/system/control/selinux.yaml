@@ -1,8 +1,8 @@
+---
 - name: Disabling SElinux
   hosts: unstable
   become: true
-
   tasks:
     - name: Disable SELinux
       ansible.posix.selinux:
-        state: disabled 
+        state: disabled

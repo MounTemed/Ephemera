@@ -1,14 +1,14 @@
+---
 - name: Disable ipv6
   hosts: unstable
   become: true
-
-  tasks: 
+  tasks:
     - name: Disable ipv6 all
       ansible.posix.sysctl:
         name: net.ipv6.conf.all.disable_ipv6
-        value: '0'
+        value: "0"
 
     - name: Disable ipv6 default
       ansible.posix.sysctl:
         name: net.ipv6.conf.default.disable_ipv6
-        value: '0'
+        value: "0"

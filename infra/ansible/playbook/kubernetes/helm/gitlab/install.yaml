@@ -1,15 +1,15 @@
+---
 - name: Installing gitlab in a cluster
   hosts: unstable
   become: true
-
   tasks:
-    - name: Add gitlab chart repository to Helm 
-      kubernetes.core.helm_repository: 
-        name: gitlab 
-        repo_url: https://charts.gitlab.io/ 
+    - name: Add gitlab chart repository to Helm
+      kubernetes.core.helm_repository:
+        name: gitlab
+        repo_url: https://charts.gitlab.io/
 
     - name: Install gitlab-ce
-      kubernetes.core.helm: 
+      kubernetes.core.helm:
         name: gitlab
         chart_ref: gitlab/gitlab
         release_namespace: nm-gitlab
@@ -17,7 +17,7 @@
         values_file: ./gitlab-values.yaml
 
     - name: Install gitlab-runners
-      kubernetes.core.helm: 
+      kubernetes.core.helm:
         name: gitlab-runners
         chart_ref: gitlab/gitlab-runner
         release_namespace: nm-gitlab
