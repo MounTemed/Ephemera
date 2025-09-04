@@ -1,7 +1,7 @@
+---
 - name: Installing full Kubernetes with Flannel
   hosts: unstable
   become: true
-
   tasks:
     - name: Install Kubernetes repo
       ansible.builtin.copy:
@@ -12,10 +12,7 @@
 
     - name: Install kubelet, kubeadm, kubectl
       ansible.builtin.dnf:
-        name:
-          - kubelet
-          - kubeadm
-          - kubectl
+        name: [kubelet, kubeadm, kubectl]
         state: latest
 
     - name: Start and enable kubelet
@@ -23,5 +20,3 @@
         name: kubelet
         state: started
         enabled: true
-
-

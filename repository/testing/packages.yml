@@ -1,0 +1,5 @@
+install-packages:
+  stage: packages
+  dependencies:
+    - getting-ipv4
+  script:

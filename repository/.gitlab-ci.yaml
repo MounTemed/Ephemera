@@ -1,31 +1,20 @@
 stages:
+  # BUILD DOCKER IMAGES
+  - docker
+
+  # LINT
+  - lint
+
+  # SECURITY SAST
+  - sast
+
   # CREATE VPC
   - validate
   - create
   - env
 
-  # LINT
-  - packages
-  - ansible-lint
-  - yamllint
-  - terraform-fmt
-  - tf-lint
-  - kubeconfrom
-  - gitlab-lint
-
-  # SECURITY
-  - trivy
-  - grype
-  - clair
-  - checkov
-  - kics
-  - terrascan
-  - gitlab-sast
-  - semgrep
-  - snyk
-  - kubespace
-  - kube-bench
-  - cilium-hubble
+  # PACKAGES
+  - package
 
   # ANSIBLE
   - playbook
@@ -36,28 +25,24 @@ stages:
   # TESTFULL
   - app
 
+  # SECURITY DAST
+  - dast
+
   # NOTIFY
   - notify
 
-  # CLEAN
-  - clean
-
-  # CREATE VPC
+  # DELETE VPC
   - destroy
 
-  # ---
-
-  # DEPLOY
-  - deploy
-
 include:
-  - local: "ci/creating_environment.yml" # VPC
-  - local: "ci/code_style.yml" # LINT
-  - local: "ci/security_code.yml" # SECURITY
-  - local: "ci/ansible_playbook_check.yml" # PLAYBOOK
-  - local: "ci/argo_appset.yml" # ARGOCD
-  - local: "ci/test_full.yml" # TESTFULL
-  - local: "ci/notify.yml" # NOTIFY
-  - local: "ci/cleanup_all.yml" # CLEAN
+  - local: "testgin/images.yml"
+  - local: "testing/code_style.yml"
+  - local: "testing/security_code.yml"
+  - local: "testing/creating_environment.yml"
+  - local: "testing/packages.yml"
+  - local: "testing/installation.yml"
+  - local: "testing/test_full.yml"
+  - local: "testing/notify.yml"
 
-  - local: "cd/deploy.yml" # DEPLOY
+  - component: gitlab.com/components/sast/sast@main
+  - template: Jobs/SAST.gitlab-ci.yml

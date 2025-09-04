@@ -1,0 +1,7 @@
+playbook:
+  dependencies:
+    - getting-ipv4
+  script:
+    - ssh root@$IPV "ansible-playbook ./infra/ansible/playbook/master.yaml"
+
+appset:
