@@ -14,3 +14,6 @@
         chart_ref: traefik/traefik
         release_namespace: nm-traefik
         create_namespace: true
+        values_files:
+          - - ../../../../../../kubernetes/infra/traefik/values.yaml
+        wait: true

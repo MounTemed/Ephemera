@@ -50,7 +50,6 @@
 | **ELK Stack**                     | Centralized logging for deep insights                 |
 | **Grafana**                       | Visualizes metrics on customizable dashboards         |
 | **Prometheus & node-exporter**    | Comprehensive system and application monitoring       |
-| **Terraform**                     | Manages infrastructure at any scale                   |
 | **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                  |
 
 </details>

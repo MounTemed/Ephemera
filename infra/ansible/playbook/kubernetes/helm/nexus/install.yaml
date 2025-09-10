@@ -14,3 +14,6 @@
         chart_ref: nexus/nexus-repository-manager
         release_namespace: nm-nexus
         create_namespace: true
+        values_files:
+          - ../../../../../../kubernetes/nexus/values.yaml
+        wait: true

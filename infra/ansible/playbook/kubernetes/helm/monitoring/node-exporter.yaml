@@ -13,3 +13,4 @@
         name: node-exporter
         chart_ref: node-exporter/node-exporter
         release_namespace: nm-monitoring
+        wait: true

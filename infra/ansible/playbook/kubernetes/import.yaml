@@ -11,8 +11,5 @@
 - name: Making the cluster single-node
   ansible.builtin.import_playbook: ./default/single-node.yaml
 
-- name: Installing ArgoCD
-  ansible.builtin.import_playbook: ./argo/install.yaml
-
 - name: Importing helm
   ansible.builtin.import_playbook: ./helm/import.yaml

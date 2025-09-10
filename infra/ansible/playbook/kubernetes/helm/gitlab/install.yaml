@@ -14,10 +14,13 @@
         chart_ref: gitlab/gitlab
         release_namespace: nm-gitlab
         create_namespace: true
-        values_file: ./gitlab-values.yaml
+        values_files:
+          - ../../../../../../kubernetes/gitlab/values.yaml
+        wait: true
 
     - name: Install gitlab-runners
       kubernetes.core.helm:
         name: gitlab-runners
         chart_ref: gitlab/gitlab-runner
         release_namespace: nm-gitlab
+        wait: true

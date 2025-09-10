@@ -7,8 +7,12 @@
       kubernetes.core.helm_repository:
         name: prometheus
         repo_url: https://prometheus-community.github.io/helm-charts
+
     - name: Install Prometheus
       kubernetes.core.helm:
         name: prometheus
         chart_ref: prometheus/prometheus
         release_namespace: nm-monitoring
+        values_files:
+          - ../../../../../../kubernetes/monitoring/prometheus/values.yaml
+        wait: true

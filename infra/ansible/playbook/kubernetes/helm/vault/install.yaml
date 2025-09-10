@@ -1,0 +1,20 @@
+---
+- name: Installing HashiCorp Vault
+  hosts: dev
+  become: true
+
+  tasks:
+    - name: Add Vault chart repository to Helm
+      kubernetes.core.helm_repository:
+        name: hashicorp
+        repo_url: https://helm.releases.hashicorp.com
+
+    - name: Install Vault
+      kubernetes.core.helm:
+        name: vault
+        chart_ref: hashicorp/vault
+        release_namespace: nm-hashicorp
+        create_namespace: true
+        values_files:
+          - ../../../../../../kubernetes/nexus/values.yaml
+        wait: true
