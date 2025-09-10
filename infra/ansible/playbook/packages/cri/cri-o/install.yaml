@@ -1,20 +1,20 @@
+---
 - name: Installing CRI-O
   hosts: unstable
   become: true
-
-  tasks: 
+  tasks:
     - name: Adding a CRI-O repository
       ansible.builtin.copy:
         src: ./cri-o.repo.j2
         dest: /etc/yum.repos.d/cri-o.repo
-        remote_src: false 
+        remote_src: false
 
     - name: Install CRI-O
       ansible.builtin.dnf:
         name: cri-o
         state: latest
 
-    - name: launching CRI-O service
+    - name: Launching CRI-O service
       ansible.builtin.systemd_service:
         name: crio
         state: started

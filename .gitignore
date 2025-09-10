@@ -7,4 +7,9 @@
 infra/terraform/tfplan
 
 # ansible
+.ansible/
 data/ansible-log.txt
+
+# SSL/TLS
+images/app/server.crt
+images/app/server.key
