@@ -10,12 +10,13 @@
 
     - name: Copy the required values.yaml gitlab-ce
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/gitlab/gitlab-ce.yaml"
+        src: ../../../../../../kubernetes/gitlab/gitlab-ce.yaml
         dest: /home/user/gitlab-ce.yaml
+        remote_src: false
 
     - name: Copy the required values.yaml gitlab-runners
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/gitlab/gitlab-ru.yaml"
+        src: ../../../../../../kubernetes/gitlab/gitlab-ru.yaml
         dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce
@@ -39,7 +40,8 @@
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        src:
-          - /home/user/gitlab-ci.yaml
-          - /home/user/gitlab-ru.yaml
+        path: "{{ item }}"
         state: absent
+      loop:
+        - /home/user/gitlab-ci.yaml
+        - /home/user/gitlab-ru.yaml

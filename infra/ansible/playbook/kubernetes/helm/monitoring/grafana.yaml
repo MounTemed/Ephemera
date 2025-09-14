@@ -10,8 +10,9 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/monitoring/grafana/values.yaml"
+        src: ../../../../../../kubernetes/monitoring/grafana/values.yaml
         dest: /home/user/grafana.yaml
+        remote_src: false
 
     - name: Install Grafana
       kubernetes.core.helm:
@@ -25,5 +26,5 @@
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        src: /home/user/grafana.yaml
+        path: /home/user/grafana.yaml
         state: absent

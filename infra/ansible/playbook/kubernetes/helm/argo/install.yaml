@@ -11,8 +11,9 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/argocd/values.yaml"
+        src: ../../../../../../kubernetes/argocd/values.yaml
         dest: /home/user/argo.yaml
+        remote_src: false
 
     - name: Install ArgoCD
       kubernetes.core.helm:
@@ -26,5 +27,5 @@
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        src: /home/user/argo.yaml
+        path: /home/user/argo.yaml
         state: absent

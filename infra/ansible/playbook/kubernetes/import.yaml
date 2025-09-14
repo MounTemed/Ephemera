@@ -11,5 +11,8 @@
 - name: Making the cluster single-node
   ansible.builtin.import_playbook: ./default/single-node.yaml
 
+- name: Creating a secret
+  ansible.builtin.import_playbook: ./default/secrets/secrets.yaml
+
 - name: Importing helm
   ansible.builtin.import_playbook: ./helm/import.yaml

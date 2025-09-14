@@ -11,6 +11,6 @@
     - name: Install node-exporter
       kubernetes.core.helm:
         name: node-exporter
-        chart_ref: node-exporter/node-exporter
+        chart_ref: node-exporter/prometheus-node-exporter
         release_namespace: nm-monitoring
         wait: true

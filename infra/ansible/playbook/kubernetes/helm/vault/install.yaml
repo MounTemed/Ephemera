@@ -11,8 +11,9 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/vault/values.yaml"
+        src: ../../../../../../kubernetes/vault/values.yaml
         dest: /home/user/vault.yaml
+        remote_src: false
 
     - name: Install Vault
       kubernetes.core.helm:
@@ -26,5 +27,5 @@
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        src: /home/user/vault.yaml
+        path: /home/user/vault.yaml
         state: absent

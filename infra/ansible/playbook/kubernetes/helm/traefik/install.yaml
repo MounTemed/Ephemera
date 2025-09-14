@@ -10,8 +10,9 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/traefik/values.yaml"
+        src: ../../../../../../kubernetes/traefik/values.yaml
         dest: /home/user/traefik.yaml
+        remote_src: false
 
     - name: Install traefik
       kubernetes.core.helm:
@@ -25,5 +26,5 @@
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        src: /home/user/traefik.yaml
+        path: /home/user/traefik.yaml
         state: absent

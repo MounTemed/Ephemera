@@ -10,8 +10,9 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/kubernetes/monitoring/prometheus/values.yaml"
+        src: ../../../../../../kubernetes/monitoring/prometheus/values.yaml
         dest: /home/user/prometheus.yaml
+        remote_src: false
 
     - name: Install Prometheus
       kubernetes.core.helm:
@@ -24,5 +25,5 @@
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        src: /home/user/prometheus.yaml
+        path: /home/user/prometheus.yaml
         state: absent
