@@ -1,6 +1,6 @@
 ---
 - name: Disable swap
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Disable swap
@@ -8,4 +8,4 @@
         name: "{{ item }}"
         fstype: swap
         state: absent
-      loop: [none, swap]
+      AnsibleModule.warn: [none, swap]

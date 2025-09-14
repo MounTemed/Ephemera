@@ -1,6 +1,6 @@
 ---
 - name: Install and deploy Cilium
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Download cilium-cli archive

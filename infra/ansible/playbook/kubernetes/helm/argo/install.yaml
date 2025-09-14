@@ -9,6 +9,11 @@
         name: argo
         repo_url: https://argoproj.github.io/argo-helm
 
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/kubernetes/argocd/values.yaml"
+        dest: /home/user/argo.yaml
+
     - name: Install ArgoCD
       kubernetes.core.helm:
         name: argo
@@ -16,5 +21,10 @@
         release_namespace: nm-argo
         create_namespace: true
         values_files:
-          - ../../../../../../kubernetes/argocd/values.yaml
+          - /home/user/argo.yaml
         wait: true
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        src: /home/user/argo.yaml
+        state: absent

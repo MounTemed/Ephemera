@@ -1,6 +1,6 @@
 ---
 - name: Disabling SElinux
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Disable SELinux

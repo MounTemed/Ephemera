@@ -1,0 +1,14 @@
+image:
+  registry: docker.io
+  repository: traefik
+  tag: latest
+  pullPolicy: IfNotPresent
+
+commonLabels: {}
+
+deployment:
+  enabled: true
+  kind: Deployment
+  replicas: 1
+  imagePullSecrets:
+    - name: docker-secrets

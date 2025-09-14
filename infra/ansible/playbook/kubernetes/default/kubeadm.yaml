@@ -1,6 +1,6 @@
 ---
 - name: Setting up kubeadm
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Initialize Kubernetes cluster

@@ -9,12 +9,22 @@
         name: hashicorp
         repo_url: https://helm.releases.hashicorp.com
 
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/kubernetes/vault/values.yaml"
+        dest: /home/user/vault.yaml
+
     - name: Install Vault
       kubernetes.core.helm:
         name: vault
         chart_ref: hashicorp/vault
-        release_namespace: nm-hashicorp
+        release_namespace: nm-vault
         create_namespace: true
         values_files:
-          - ../../../../../../kubernetes/nexus/values.yaml
+          - /home/user/vault.yaml
         wait: true
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        src: /home/user/vault.yaml
+        state: absent

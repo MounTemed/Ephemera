@@ -1,6 +1,6 @@
 ---
 - name: Firewall setup
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Enabled firewalld service

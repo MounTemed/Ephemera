@@ -1,6 +1,6 @@
 ---
-- name: Installing full Kubernetes with Flannel
-  hosts: unstable
+- name: Installing full Kubernetes
+  hosts: dev
   become: true
   tasks:
     - name: Install Kubernetes repo

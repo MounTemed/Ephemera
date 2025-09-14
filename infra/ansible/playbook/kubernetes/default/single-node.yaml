@@ -1,6 +1,6 @@
 ---
 - name: Single node cluster setup
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Untaint control plane nodes

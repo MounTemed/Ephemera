@@ -1,6 +1,6 @@
 ---
 - name: Temporarily disable firewalld
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Disable firewall

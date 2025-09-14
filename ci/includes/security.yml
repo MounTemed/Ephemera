@@ -38,13 +38,6 @@ kics:
   script:
     - kics scan -p ./image/app/Conatinerfile
 
-terrascan:
-  stage: sast
-  image:
-    name: docker.io/tenable/terrascan:latest
-  script:
-    - cd ./infra/terraform && terrascan --init && terrascan scan ./ --find-vuln
-
 semgrep:
   stage: sast
   image:

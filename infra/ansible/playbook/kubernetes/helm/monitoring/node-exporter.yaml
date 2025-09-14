@@ -1,6 +1,6 @@
 ---
 - name: Installing node-exporter in a cluster
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Add node-exporter chart repository to Helm

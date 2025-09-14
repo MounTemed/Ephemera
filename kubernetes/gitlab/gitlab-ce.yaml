@@ -1,0 +1,35 @@
+global:
+  hosts:
+    domain: lune.su
+    hostSuffix: staging
+    https: true
+    externalIP:
+    gitlab:
+      name: gitlab.lune.com
+      https: true
+    registry:
+      name: registry.lune.com
+      https: true
+  ingress:
+    enabled: true
+    provider: traefik
+    class: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  gitlab-shell:
+    traefik:
+      entrypoint: "gitlab-shell"
+  image:
+    pullSecrets:
+      - name: docker-secrets
+
+nginx-ingress:
+  enabled: false
+
+traefik:
+  install: true
+  fullnameOverride: traefik
+  ingressClass:
+    enabled: true
+    fallbackApiVersion: v1

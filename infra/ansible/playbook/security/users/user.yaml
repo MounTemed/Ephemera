@@ -1,6 +1,6 @@
 ---
 - name: Adding a new user
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: New user without root rights

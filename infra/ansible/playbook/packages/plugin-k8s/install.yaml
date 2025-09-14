@@ -1,6 +1,6 @@
 ---
 - name: Loading python and after the Kubernetes library
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Install Python

@@ -1,6 +1,6 @@
 ---
 - name: Installing CRI-O
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Adding a CRI-O repository

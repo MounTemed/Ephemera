@@ -1,12 +1,17 @@
 ---
 - name: Installing Nexus in a cluster
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Add Nexus chart repository to Helm
       kubernetes.core.helm_repository:
         name: nexus
         repo_url: https://sonatype.github.io/helm3-charts/
+
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/kubernetes/nexus/values.yaml"
+        dest: /home/user/nexus.yaml
 
     - name: Install Nexus
       kubernetes.core.helm:
@@ -15,5 +20,10 @@
         release_namespace: nm-nexus
         create_namespace: true
         values_files:
-          - ../../../../../../kubernetes/nexus/values.yaml
+          - /home/user/nexus.yaml
         wait: true
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        src: /home/user/nexus.yaml
+        state: absent

@@ -1,6 +1,6 @@
 ---
 - name: Installing Prometheus in a cluster
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Add Prometheus chart repository to Helm
@@ -8,11 +8,21 @@
         name: prometheus
         repo_url: https://prometheus-community.github.io/helm-charts
 
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/kubernetes/monitoring/prometheus/values.yaml"
+        dest: /home/user/prometheus.yaml
+
     - name: Install Prometheus
       kubernetes.core.helm:
         name: prometheus
         chart_ref: prometheus/prometheus
         release_namespace: nm-monitoring
         values_files:
-          - ../../../../../../kubernetes/monitoring/prometheus/values.yaml
+          - /home/user/prometheus.yaml
         wait: true
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        src: /home/user/prometheus.yaml
+        state: absent

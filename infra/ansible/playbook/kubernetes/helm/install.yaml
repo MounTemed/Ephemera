@@ -1,6 +1,6 @@
 ---
 - name: Installing helm
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: We get the required .sh file

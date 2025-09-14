@@ -2,18 +2,18 @@ moscow:
   children:
     peaceful:
       children:
-        prod:
-          hosts:
-            host1:
-              ansible_host: IPV4
-              ansible_user: root
-        QA:
-          hosts:
-            host1:
-              ansible_host: IPv4
-              ansible_user: root
+        # prod:
+        #   hosts:
+        #     host1:
+        #       ansible_host: IPV4
+        #       ansible_user: root
+        # QA:
+        #   hosts:
+        #     host1:
+        #       ansible_host: IPv4
+        #       ansible_user: root
         dev:
           hosts:
             host1:
-              ansible_host: IPV4
+              ansible_host: 89.169.47.232
               ansible_user: root

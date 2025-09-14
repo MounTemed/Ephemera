@@ -1,6 +1,6 @@
 ---
 - name: Installing tar
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Install tar

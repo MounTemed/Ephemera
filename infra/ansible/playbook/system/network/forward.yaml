@@ -1,6 +1,6 @@
 ---
 - name: Enable Ip_forward
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Enabling forward

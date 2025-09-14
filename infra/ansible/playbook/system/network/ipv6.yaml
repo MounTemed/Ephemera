@@ -1,6 +1,6 @@
 ---
 - name: Disable ipv6
-  hosts: unstable
+  hosts: dev
   become: true
   tasks:
     - name: Disable ipv6 all
