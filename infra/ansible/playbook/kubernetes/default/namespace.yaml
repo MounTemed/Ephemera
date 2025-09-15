@@ -1,0 +1,24 @@
+---
+- name: Create namespaces
+  hosts: dev
+  become: true
+  vars:
+    namespaces:
+      - nm-argo
+      - nm-gitlab
+      - nm-elk
+      - nm-monitoring
+      - nm-nexus
+      - nm-traefik
+      # - nm-vault
+
+  tasks:
+    - name: Ensure namespaces exist
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: "{{ item }}"
+      loop: "{{ namespaces }}"

@@ -20,7 +20,6 @@
         name: vault
         chart_ref: hashicorp/vault
         release_namespace: nm-vault
-        create_namespace: true
         values_files:
           - /home/user/vault.yaml
         wait: true

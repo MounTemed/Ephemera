@@ -19,7 +19,6 @@
         name: nexus
         chart_ref: nexus/nexus-repository-manager
         release_namespace: nm-nexus
-        create_namespace: true
         values_files:
           - /home/user/nexus.yaml
         wait: true

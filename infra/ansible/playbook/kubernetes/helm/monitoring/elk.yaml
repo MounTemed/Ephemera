@@ -13,5 +13,4 @@
         name: elk-elasticsearch
         chart_ref: elastic/elasticsearch
         release_namespace: nm-elk
-        create_namespace: true
         wait: true

@@ -11,8 +11,8 @@ infra/terraform/tfplan
 data/ansible-log.txt
 
 # docker
-infra/ansible/playbook/kubernetes/default/secrets/auth.json
+infra/ansible/playbook/kubernetes/default/secrets/docker-secrets.yaml
 
 # SSL/TLS
-images/app/server.crt
-images/app/server.key
+infra/ansible/playbook/secrets/cert.pem
+infra/ansible/playbook/secrets/privkey.pem

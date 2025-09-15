@@ -19,7 +19,6 @@
         name: traefik
         chart_ref: traefik/traefik
         release_namespace: nm-traefik
-        create_namespace: true
         values_files:
           - /home/user/traefik.yaml
         wait: true

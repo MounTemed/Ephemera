@@ -8,11 +8,12 @@
 - name: Installing Traefik
   ansible.builtin.import_playbook: ./traefik/install.yaml
 
-- name: Installing Nexus
-  ansible.builtin.import_playbook: ./nexus/install.yaml
+# - name: Installing Nexus
+#   ansible.builtin.import_playbook: ./nexus/install.yaml
 
 - name: Installing Gitlab
   ansible.builtin.import_playbook: ./gitlab/install.yaml
+  tags: [test]
 
 - name: Installing Monitoring
   ansible.builtin.import_playbook: ./monitoring/import.yaml

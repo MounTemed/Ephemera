@@ -3,13 +3,29 @@ global:
     domain: lune.su
     hostSuffix: staging
     https: true
-    externalIP:
+    externalIP: ""
     gitlab:
-      name: gitlab.lune.com
+      name: gitlab.lune.su
       https: true
     registry:
-      name: registry.lune.com
+      name: registry.lune.su
       https: true
+
+  minio:
+    enabled: false
+  appConfig:
+    object_store:
+      enabled: true
+      connection:
+        secret: gitlab-s3-secret
+
+  common:
+    labels:
+      environment: staging
+    nodeSelector:
+      node-role.kubernetes.io/gitlab: "true"
+    affinity: {}
+
   ingress:
     enabled: true
     provider: traefik
@@ -17,19 +33,47 @@ global:
     annotations:
       traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-  gitlab-shell:
-    traefik:
-      entrypoint: "gitlab-shell"
+    tls:
+      enabled: true
+      secretName: tls-key
+    configureCertmanager: false
   image:
     pullSecrets:
       - name: docker-secrets
+
+  gitlab-shell:
+    traefik:
+      entrypoint: "gitlab-shell"
 
 nginx-ingress:
   enabled: false
 
 traefik:
-  install: true
-  fullnameOverride: traefik
-  ingressClass:
+  install: false
+
+gitlab:
+  webservice:
+    replicas: 3
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1Gi"
+        cpu: "1000m"
+
+  ssh:
     enabled: true
-    fallbackApiVersion: v1
+    host: gitlab.lune.su
+    service:
+      externalPort: 22
+
+certmanager-issuer:
+  email: lunes@uv.do
+  clusterIssuer: letsencrypt-prod
+
+postgresql:
+  install: true
+
+redis:
+  install: true

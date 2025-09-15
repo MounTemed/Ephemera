@@ -20,7 +20,6 @@
         name: argo
         chart_ref: argo/argo-cd
         release_namespace: nm-argo
-        create_namespace: true
         values_files:
           - /home/user/argo.yaml
         wait: true

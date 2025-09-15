@@ -19,7 +19,6 @@
         name: grafana
         chart_ref: grafana/grafana
         release_namespace: nm-monitoring
-        create_namespace: true
         values_files:
           - /home/user/grafana.yaml
         wait: true
