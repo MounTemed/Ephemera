@@ -14,10 +14,10 @@
         dest: /home/user/gitlab-ce.yaml
         remote_src: false
 
-    # - name: Copy the required values.yaml gitlab-runners
-    #   ansible.builtin.copy:
-    #     src: ../../../../../../kubernetes/gitlab/gitlab-ru.yaml
-    #     dest: /home/user/gitlab-ru.yaml
+    - name: Copy the required values.yaml gitlab-runners
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/gitlab/gitlab-ru.yaml
+        dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce
       kubernetes.core.helm:
@@ -26,16 +26,14 @@
         release_namespace: nm-gitlab
         values_files:
           - /home/user/gitlab-ce.yaml
-        wait: true
 
-    # - name: Install gitlab-runners
-    #   kubernetes.core.helm:
-    #     name: gitlab-runners
-    #     chart_ref: gitlab/gitlab-runner
-    #     release_namespace: nm-gitlab
-    #     values_file:
-    #       - /home/user/gitlab-ru.yaml
-    #     wait: true
+    - name: Install gitlab-runners
+      kubernetes.core.helm:
+        name: gitlab-runners
+        chart_ref: gitlab/gitlab-runner
+        release_namespace: nm-gitlab
+        values_file:
+          - /home/user/gitlab-ru.yaml
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
@@ -43,4 +41,4 @@
         state: absent
       loop:
         - /home/user/gitlab-ci.yaml
-        # - /home/user/gitlab-ru.yaml
+        - /home/user/gitlab-ru.yaml

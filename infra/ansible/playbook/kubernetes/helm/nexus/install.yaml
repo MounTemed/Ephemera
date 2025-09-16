@@ -21,7 +21,6 @@
         release_namespace: nm-nexus
         values_files:
           - /home/user/nexus.yaml
-        wait: true
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:

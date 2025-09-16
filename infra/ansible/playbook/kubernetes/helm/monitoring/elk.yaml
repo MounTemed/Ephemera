@@ -10,7 +10,6 @@
 
     - name: Install elk/elasticsearch
       kubernetes.core.helm:
-        name: elk-elasticsearch
+        name: elasticsearch
         chart_ref: elastic/elasticsearch
         release_namespace: nm-elk
-        wait: true

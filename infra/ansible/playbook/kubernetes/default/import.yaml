@@ -16,3 +16,9 @@
 
 - name: Creating a secrets
   ansible.builtin.import_playbook: ./secrets.yaml
+
+- name: Creating a StorageClass
+  ansible.builtin.import_playbook: ./storage/storage.yaml
+
+- name: Creating a PersistentVolumeClaim
+  ansible.builtin.import_playbook: ./storage/pvc.yaml

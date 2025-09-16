@@ -21,7 +21,6 @@
         release_namespace: nm-monitoring
         values_files:
           - /home/user/grafana.yaml
-        wait: true
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:

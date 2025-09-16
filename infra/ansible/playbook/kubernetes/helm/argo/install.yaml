@@ -22,7 +22,6 @@
         release_namespace: nm-argo
         values_files:
           - /home/user/argo.yaml
-        wait: true
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:

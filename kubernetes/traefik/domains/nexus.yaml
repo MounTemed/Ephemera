@@ -1,16 +1,16 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: grafana-lune-su
-  namespace: monitoring
+  name: nexus-lune-su
+  namespace: nm-nexus
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`grafana.lune.su`)
+    - match: Host(`argo.lune.su`)
       kind: Rule
       services:
-        - name: grafana
-          port: 80
+        - name: nexus-nexus-repository-manager
+          port: 8081
   tls:
     certResolver: letsencrypt

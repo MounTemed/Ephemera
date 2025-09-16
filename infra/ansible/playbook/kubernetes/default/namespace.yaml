@@ -10,6 +10,7 @@
       - nm-monitoring
       - nm-nexus
       - nm-traefik
+      - local-path-storage
       # - nm-vault
 
   tasks:

@@ -2,10 +2,11 @@
 - name: Installing Grafana
   ansible.builtin.import_playbook: ./grafana.yaml
 
-# - name: Installing prometheus
-#   ansible.builtin.import_playbook: ./prometheus-comm.yaml
+- name: Installing prometheus
+  ansible.builtin.import_playbook: ./prometheus-comm.yaml
 
 - name: Installing Node-exporter
   ansible.builtin.import_playbook: ./node-exporter.yaml
-# - name: Installing ELK
-#   ansible.builtin.import_playbook: ./elk.yaml
+
+- name: Installing ELK
+  ansible.builtin.import_playbook: ./elk.yaml

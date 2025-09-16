@@ -10,10 +10,10 @@ spec:
     - match: Host(`gitlab.lune.su`)
       kind: Rule
       services:
-        - name: #TODO
-          port: 80
+        - name: gitlab-webservice-default
+          port: 8080
   tls:
-    certResolver: myresolver
+    certResolver: gitlab-tls
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -28,7 +28,7 @@ spec:
     - match: Host(`registry.lune.su`)
       kind: Rule
       services:
-        - name: #TODO
+        - name: gitlab-registry
           port: 5000
   tls:
-    certResolver: myresolver
+    certResolver: gitlab-tls

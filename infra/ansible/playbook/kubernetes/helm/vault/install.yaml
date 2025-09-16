@@ -22,7 +22,6 @@
         release_namespace: nm-vault
         values_files:
           - /home/user/vault.yaml
-        wait: true
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:

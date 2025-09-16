@@ -1,5 +1,5 @@
 image:
-  repository: sonatype/nexus3
+  repository: docker.io/sonatype/nexus3
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: docker-secrets

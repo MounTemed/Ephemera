@@ -1,12 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: elasticsearch
-  labels:
-    helm.sh/chart: eck-elasticsearch-0.14.1
-    app.kubernetes.io/name: eck-elasticsearch
-    app.kubernetes.io/instance: es-kb-quickstart
-    app.kubernetes.io/managed-by: Helm
+  name: els-lune-su
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
 spec:
   rules:
     - host: "elasticsearch.lune.su"
@@ -19,17 +17,17 @@ spec:
                 name: elasticsearch-es-http
                 port:
                   number: 9200
-
+  tls:
+    - hosts:
+        - "elasticsearch.lune.su"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: es-kb-quickstart-eck-kibana
-  labels:
-    helm.sh/chart: eck-kibana-0.14.1
-    app.kubernetes.io/name: eck-kibana
-    app.kubernetes.io/instance: es-kb-quickstart
-    app.kubernetes.io/managed-by: Helm
+  name: elk-lune-su
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
 spec:
   rules:
     - host: "kibana.lune.su"
@@ -42,3 +40,6 @@ spec:
                 name: es-kb-quickstart-eck-kibana-kb-http
                 port:
                   number: 5601
+  tls:
+    - hosts:
+        - "kibana.lune.su"
