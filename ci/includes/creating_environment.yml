@@ -5,12 +5,7 @@ image:
 
 cloud-init:
   stage: cloud-init
-  script:
-    #- ssh-keygen -t ed25519 -C "gitlab-ci" -f ./gitlab-ci-key -N ""
-    #- cat gitlab-ci-key.pub >> ~/.ssh/authorized_keys
-    # than using ssh which will be visible to everyone and thus creating a very serious vulnerability
-    # we will use cloud-init / metadata
-    # there is also an option to create an ssh key yourself and transfer it to each vpc
+  # script: TODO
 
 validate-tf:
   stage: validate
