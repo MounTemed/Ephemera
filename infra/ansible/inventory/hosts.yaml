@@ -5,7 +5,7 @@ moscow:
         prod:
           hosts:
             host1:
-              ansible_host: IPV4
+              ansible_host: IPv4
               ansible_user: root
         QA:
           hosts:
@@ -15,5 +15,5 @@ moscow:
         dev:
           hosts:
             host1:
-              ansible_host: 31.130.155.218
+              ansible_host: IPv4
               ansible_user: root

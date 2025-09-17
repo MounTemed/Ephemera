@@ -107,6 +107,8 @@ spec:
                   fieldPath: metadata.namespace
             - name: CONFIG_MOUNT_PATH
               value: /etc/config/
+          securityContext:
+            readOnlyRootFilesystem: true
       volumes:
         - name: config-volume
           configMap:

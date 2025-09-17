@@ -6,4 +6,9 @@ deployment:
     - name: docker-secrets
 
 service:
-  type: ClusterIP
+  type: NodePort
+  ports:
+    web:
+      nodePort: 80
+    websecure:
+      nodePort: 443
