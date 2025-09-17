@@ -109,6 +109,7 @@ spec:
               value: /etc/config/
           securityContext:
             readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
       volumes:
         - name: config-volume
           configMap:
