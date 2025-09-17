@@ -1,20 +1,20 @@
+---
 - name: Setting up kubeadm
-  hosts: unstable
+  hosts: dev
   become: true
-
   tasks:
     - name: Initialize Kubernetes cluster
-      ansible.builtin.command: kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=unix:///var/run/crio/crio.sock 
+      ansible.builtin.command: kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=unix:///var/run/crio/crio.sock
       args:
         creates: /etc/kubernetes/admin.conf
 
-    - name: Create .kube directory for root 
+    - name: Create .kube directory for root
       ansible.builtin.file:
         path: /root/.kube
         state: directory
         owner: user
         group: user
-        mode: '0755'
+        mode: "0755"
         recurse: true
 
     - name: Copy kubeconfig to root
@@ -23,7 +23,7 @@
         dest: /root/.kube/config
         owner: user
         group: user
-        mode: '0644'
+        mode: "0644"
         remote_src: true
 
     #- name: Create .kube directory for user
@@ -43,4 +43,3 @@
     #    group: user
     #    mode: '0644'
     #    remote_src: true
-

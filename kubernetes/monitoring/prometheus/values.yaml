@@ -1,0 +1,5 @@
+imagePullSecrets:
+  - name: docker-secrets
+image:
+  repository: quay.io/prometheus/prometheus
+  pullPolicy: IfNotPresent

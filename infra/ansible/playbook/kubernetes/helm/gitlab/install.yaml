@@ -1,23 +1,44 @@
+---
 - name: Installing gitlab in a cluster
-  hosts: unstable
+  hosts: dev
   become: true
-
   tasks:
-    - name: Add gitlab chart repository to Helm 
-      kubernetes.core.helm_repository: 
-        name: gitlab 
-        repo_url: https://charts.gitlab.io/ 
+    - name: Add gitlab chart repository to Helm
+      kubernetes.core.helm_repository:
+        name: gitlab
+        repo_url: https://charts.gitlab.io/
+
+    - name: Copy the required values.yaml gitlab-ce
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/gitlab/gitlab-ce.yaml
+        dest: /home/user/gitlab-ce.yaml
+        remote_src: false
+
+    - name: Copy the required values.yaml gitlab-runners
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/gitlab/gitlab-ru.yaml
+        dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce
-      kubernetes.core.helm: 
+      kubernetes.core.helm:
         name: gitlab
         chart_ref: gitlab/gitlab
         release_namespace: nm-gitlab
-        create_namespace: true
-        values_file: ./gitlab-values.yaml
+        values_files:
+          - /home/user/gitlab-ce.yaml
 
     - name: Install gitlab-runners
-      kubernetes.core.helm: 
+      kubernetes.core.helm:
         name: gitlab-runners
         chart_ref: gitlab/gitlab-runner
         release_namespace: nm-gitlab
+        values_files:
+          - /home/user/gitlab-ru.yaml
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /home/user/gitlab-ci.yaml
+        - /home/user/gitlab-ru.yaml

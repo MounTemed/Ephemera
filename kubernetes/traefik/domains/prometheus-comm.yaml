@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-lune-su
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`prometheus.lune.su`)
+      kind: Rule
+      services:
+        - name: prometheus-server
+          port: 9090
+  tls:
+    certResolver: letsencrypt

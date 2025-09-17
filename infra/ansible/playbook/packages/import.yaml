@@ -1,12 +1,12 @@
+---
 - name: Installing the yum package manager
   ansible.builtin.import_playbook: ./manager/yum/install.yaml
 
 - name: Installing tar
   ansible.builtin.import_playbook: ./unpackers/tar.yaml
 
-- name: Set CRI-O as CRI 
+- name: Set CRI-O as CRI
   ansible.builtin.import_playbook: ./cri/cri-o/install.yaml
 
 - name: Install kubernetes ansible library
   ansible.builtin.import_playbook: ./plugin-k8s/install.yaml
-

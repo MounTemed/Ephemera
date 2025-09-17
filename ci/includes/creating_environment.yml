@@ -1,0 +1,54 @@
+image:
+  name: docker.io/hashicorp/terraform:1.13
+  entrypoint:
+    - "/usr/bin/env"
+
+cloud-init:
+  stage: cloud-init
+  # script: TODO
+
+validate-tf:
+  stage: validate
+  script:
+    - cd ./infra/terraform/
+    - terraform init
+    - terraform fmt -check
+    - echo $terraform_token_timeweb >> ./secret.auto.tfvars
+    - terraform validate
+  artifacts:
+    paths:
+      - secret.auto.tfvars
+
+create-vps:
+  stage: create
+  resource_group: "vpc-$(CI_MERGE_REQUEST_IID)"
+  script:
+    - terraform plan
+    - terraform apply -auto-approve
+  artifacts:
+    paths:
+      - .terraform/
+      - terraform.tfstate
+      - secret.auto.tfvars
+
+getting-ipv4:
+  stage: env
+  script:
+    - export IPV4=$(terraform output -raw public_ip)
+    - echo "IPV4=$IPV4" >> variables.env
+  artifacts:
+    reports:
+      dotenv: variables.env
+  needs: ["create-vps"]
+
+vpc-removal:
+  stage: destroy
+  script:
+    - terraform destroy -auto-approve
+  artifacts:
+    paths:
+      - .terraform/
+      - terraform.tfstate
+      - secret.auto.tfvars
+  when: always
+  needs: ["create-vps"]

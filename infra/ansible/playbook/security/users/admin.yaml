@@ -1,11 +1,11 @@
+---
 - name: Adding a new user
-  hosts: unstable
+  hosts: dev
   become: true
-
   tasks:
-    - name: New user without root rights 
+    - name: New user without root rights
       ansible.builtin.user:
-        name: admin 
+        name: admin
         create_home: false
         shell: /bin/bash
         uid: 356

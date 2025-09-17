@@ -1,7 +1,7 @@
+---
 - name: Firewall setup
-  hosts: unstable
+  hosts: dev
   become: true
-
   tasks:
     - name: Enabled firewalld service
       ansible.builtin.systemd_service:
@@ -67,7 +67,6 @@
         port: 80/tcp
         permanent: true
         state: disabled
-
     - name: Disable TCP/8080
       ansible.posix.firewalld:
         port: 8080/tcp

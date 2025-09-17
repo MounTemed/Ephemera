@@ -1,7 +1,7 @@
+---
 - name: Installing yum package manager
-  hosts: unstable
+  hosts: dev
   become: true
-
   tasks:
     - name: Install yum
       ansible.builtin.dnf:

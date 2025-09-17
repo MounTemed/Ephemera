@@ -1,17 +1,29 @@
+---
 - name: Install traefik in cluster
-  hosts: unstable
+  hosts: dev
   become: true
-
   tasks:
     - name: Add Traefik Labs chart repository to Helm
       kubernetes.core.helm_repository:
         name: traefik
         repo_url: https://traefik.github.io/charts
 
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/traefik/values.yaml
+        dest: /home/user/traefik.yaml
+        remote_src: false
+
     - name: Install traefik
-      kubernetes.core.helm: 
+      kubernetes.core.helm:
         name: traefik
         chart_ref: traefik/traefik
         release_namespace: nm-traefik
-        create_namespace: true
+        values_files:
+          - /home/user/traefik.yaml
+        wait: true
 
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        path: /home/user/traefik.yaml
+        state: absent
