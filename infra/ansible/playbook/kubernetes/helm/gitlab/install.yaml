@@ -32,7 +32,7 @@
         name: gitlab-runners
         chart_ref: gitlab/gitlab-runner
         release_namespace: nm-gitlab
-        values_file:
+        values_files:
           - /home/user/gitlab-ru.yaml
 
     - name: Delete the file that is no longer needed

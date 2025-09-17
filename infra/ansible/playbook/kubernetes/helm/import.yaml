@@ -18,7 +18,6 @@
 
 - name: Installing ArgoCD
   ansible.builtin.import_playbook: ./argo/install.yaml
-  tags: [test]
 # TODO
 # helm upgrade cilium cilium/cilium --version 1.18.1 \
 #   --namespace $CILIUM_NAMESPACE \
