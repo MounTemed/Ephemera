@@ -10,7 +10,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/monitoring/prometheus/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/monitoring/prometheus/values.yaml
         dest: /home/user/prometheus.yaml
         remote_src: false
 

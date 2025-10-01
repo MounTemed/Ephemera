@@ -10,7 +10,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/monitoring/grafana/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/monitoring/grafana/values.yaml
         dest: /home/user/grafana.yaml
         remote_src: false
 

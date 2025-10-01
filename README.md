@@ -50,14 +50,8 @@
 | **ELK Stack**                     | Centralized logging for deep insights                  |
 | **Grafana**                       | Visualizes metrics on customizable dashboards          |
 | **Prometheus & node-exporter**    | Comprehensive system and application monitoring        |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
+| **Alloy**                         | Optimized data collection                              |
+| **Traefik**                       | Fast reverse proxy server                              |
 | **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
 
 </details>

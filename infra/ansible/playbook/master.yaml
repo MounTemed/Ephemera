@@ -1,4 +1,8 @@
 ---
+- name: System update and restart
+  ansible.builtin.import_playbook: ./start/install.yaml
+  tags: [start]
+
 - name: Setting up our cloud
   ansible.builtin.import_playbook: ./system/import.yaml
   tags: [system]
@@ -14,7 +18,3 @@
 - name: Installing kubernetes-full
   ansible.builtin.import_playbook: ./kubernetes/import.yaml
   tags: [kubernetes]
-
-- name: System update and restart
-  ansible.builtin.import_playbook: ./end/install.yaml
-  tags: [end]

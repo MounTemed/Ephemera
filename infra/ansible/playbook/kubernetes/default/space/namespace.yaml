@@ -1,5 +1,5 @@
 ---
-- name: Create namespaces // infra/ansible/playbook/kubernetes/default/namespace.yaml
+- name: Create namespaces // infra/ansible/playbook/kubernetes/default/space/namespace.yaml
   hosts: dev
   become: true
   vars:

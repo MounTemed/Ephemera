@@ -10,13 +10,13 @@
 
     - name: Copy the required values.yaml gitlab-ce
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/gitlab/gitlab-ce.yaml
+        src: ../../../../../../kubernetes/settings/base/gitlab/config-ce.yaml
         dest: /home/user/gitlab-ce.yaml
         remote_src: false
 
     - name: Copy the required values.yaml gitlab-runners
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/gitlab/gitlab-ru.yaml
+        src: ../../../../../../kubernetes/settings/base/gitlab/config-ru.yaml
         dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce

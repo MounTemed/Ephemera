@@ -10,7 +10,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/network/cni/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/network/cni/values.yaml
         dest: /home/user/cilium.yaml
         remote_src: false
 

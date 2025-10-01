@@ -1,8 +1,0 @@
----
-- name: Disabling SElinux // infra/ansible/playbook/system/control/selinux.yaml
-  hosts: dev
-  become: true
-  tasks:
-    - name: Disable SELinux
-      ansible.posix.selinux:
-        state: disabled

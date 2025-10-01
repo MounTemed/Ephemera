@@ -1,0 +1,4 @@
+global:
+  image:
+    pullSecrets:
+      - name: docker-secrets

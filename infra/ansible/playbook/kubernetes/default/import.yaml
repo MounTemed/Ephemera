@@ -11,11 +11,8 @@
 - name: Making the cluster single-node
   ansible.builtin.import_playbook: ./single-node.yaml
 
-- name: Creating and namespace
-  ansible.builtin.import_playbook: ./namespace.yaml
-
-- name: Creating secrets
-  ansible.builtin.import_playbook: ./secrets/import.yaml
+- name: Creating space
+  ansible.builtin.import_playbook: ./space/import.yaml
 
 - name: Creating storage
   ansible.builtin.import_playbook: ./storage/import.yaml

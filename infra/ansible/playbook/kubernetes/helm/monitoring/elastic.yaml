@@ -8,8 +8,21 @@
         name: elastic
         repo_url: https://helm.elastic.co
 
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/helm/monitoring/elastic/elasticsearch/values.yaml
+        dest: /home/user/elasticsearch.yaml
+        remote_src: false
+
     - name: Install elk/elasticsearch
       kubernetes.core.helm:
         name: elasticsearch
         chart_ref: elastic/elasticsearch
         release_namespace: nm-elk
+        values_files:
+          - /home/user/elasticsearch.yaml
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        path: /home/user/elasticsearch.yaml
+        state: absent

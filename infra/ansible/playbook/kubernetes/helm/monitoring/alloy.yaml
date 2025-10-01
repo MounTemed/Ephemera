@@ -6,7 +6,7 @@
   tasks:
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/alloy/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/monitoring/grafana/alloy/values.yaml
         dest: /home/user/alloy.yaml
         remote_src: false
 
