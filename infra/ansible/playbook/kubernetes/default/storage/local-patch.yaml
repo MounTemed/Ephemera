@@ -110,6 +110,7 @@ spec:
               value: /etc/config/
           securityContext:
             readOnlyRootFilesystem: true
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
       volumes:
         - name: config-volume
