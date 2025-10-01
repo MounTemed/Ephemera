@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-lune-su
+  namespace: nm-monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`grafana.lune.su`)
+      kind: Rule
+      services:
+        - name: grafana
+          port: 3000
+  tls:
+    certResolver: grafana-tls

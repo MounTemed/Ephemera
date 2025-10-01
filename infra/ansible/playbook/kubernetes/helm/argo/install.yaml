@@ -1,5 +1,5 @@
 ---
-- name: Installing ArgoCD
+- name: Installing ArgoCD // infra/ansible/playbook/kubernetes/helm/argo/install.yaml
   hosts: dev
   become: true
 
@@ -11,7 +11,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/argocd/values.yaml
+        src: ../../../../../../kubernetes/settings/argocd/values.yaml
         dest: /home/user/argo.yaml
         remote_src: false
 

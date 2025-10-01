@@ -1,5 +1,5 @@
 ---
-- name: Create namespaces
+- name: Create namespaces // infra/ansible/playbook/kubernetes/default/namespace.yaml
   hosts: dev
   become: true
   vars:
@@ -10,8 +10,7 @@
       - nm-monitoring
       - nm-nexus
       - nm-traefik
-      - local-path-storage
-      # - nm-vault
+      - nm-local-path-storage
 
   tasks:
     - name: Ensure namespaces exist

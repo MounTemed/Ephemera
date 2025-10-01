@@ -1,0 +1,8 @@
+global:
+  imagePullSecrets:
+    - name: docker-secrets
+
+image:
+  registry: docker.io
+  repository: grafana/grafana
+  pullPolicy: IfNotPresent

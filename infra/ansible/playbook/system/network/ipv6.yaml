@@ -1,5 +1,5 @@
 ---
-- name: Disable ipv6
+- name: Disable ipv6 // infra/ansible/playbook/system/network/ipv6.yaml
   hosts: dev
   become: true
   tasks:

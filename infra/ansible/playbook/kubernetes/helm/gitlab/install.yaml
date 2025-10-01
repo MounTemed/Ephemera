@@ -1,5 +1,5 @@
 ---
-- name: Installing gitlab in a cluster
+- name: Installing gitlab in a cluster // infra/ansible/playbook/kubernetes/helm/gitlab/install.yaml
   hosts: dev
   become: true
   tasks:
@@ -10,13 +10,13 @@
 
     - name: Copy the required values.yaml gitlab-ce
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/gitlab/gitlab-ce.yaml
+        src: ../../../../../../kubernetes/settings/gitlab/gitlab-ce.yaml
         dest: /home/user/gitlab-ce.yaml
         remote_src: false
 
     - name: Copy the required values.yaml gitlab-runners
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/gitlab/gitlab-ru.yaml
+        src: ../../../../../../kubernetes/settings/gitlab/gitlab-ru.yaml
         dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce

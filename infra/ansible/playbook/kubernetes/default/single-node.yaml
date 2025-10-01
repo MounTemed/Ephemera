@@ -1,5 +1,5 @@
 ---
-- name: Single node cluster setup
+- name: Single node cluster setup // infra/ansible/playbook/kubernetes/default/single-node.yaml
   hosts: dev
   become: true
   tasks:

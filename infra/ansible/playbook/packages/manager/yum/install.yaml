@@ -1,5 +1,5 @@
 ---
-- name: Installing yum package manager
+- name: Installing yum package manager // infra/ansible/playbook/packages/manager/yum/install.yaml
   hosts: dev
   become: true
   tasks:

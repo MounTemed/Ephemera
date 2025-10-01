@@ -2,10 +2,14 @@
 - name: Installing Helm
   ansible.builtin.import_playbook: ./install.yaml
 
-# - name: Installing Vault
-#   ansible.builtin.import_playbook: ./vault/install.yaml
+- name: Settings CNI
+  ansible.builtin.import_playbook: ./cni/install.yaml
+
 - name: Installing Traefik
   ansible.builtin.import_playbook: ./traefik/install.yaml
+
+- name: Installing istio
+  ansible.builtin.import_playbook: ./cni/install.yaml
 
 - name: Installing Nexus
   ansible.builtin.import_playbook: ./nexus/install.yaml
@@ -18,9 +22,3 @@
 
 - name: Installing ArgoCD
   ansible.builtin.import_playbook: ./argo/install.yaml
-# TODO
-# helm upgrade cilium cilium/cilium --version 1.18.1 \
-#   --namespace $CILIUM_NAMESPACE \
-#   --reuse-values \
-#   --set hubble.relay.enabled=true \
-#   --set hubble.ui.enabled=true

@@ -1,0 +1,7 @@
+image:
+  registry: registry.gitlab.com
+  image: gitlab-org/ci-cd/gitlab-runner-ubi-images/gitlab-runner-ocp
+
+runners:
+  imagePullSecrets:
+    - name: docker-secrets

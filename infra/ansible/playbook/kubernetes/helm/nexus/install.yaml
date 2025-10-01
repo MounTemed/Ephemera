@@ -1,5 +1,5 @@
 ---
-- name: Installing Nexus in a cluster
+- name: Installing Nexus in a cluster // infra/ansible/playbook/kubernetes/helm/nexus/install.yaml
   hosts: dev
   become: true
   tasks:

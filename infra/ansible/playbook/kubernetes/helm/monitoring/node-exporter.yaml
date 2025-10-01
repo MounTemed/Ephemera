@@ -1,5 +1,5 @@
 ---
-- name: Installing node-exporter in a cluster
+- name: Installing node-exporter in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/node-exporter.yaml
   hosts: dev
   become: true
   tasks:

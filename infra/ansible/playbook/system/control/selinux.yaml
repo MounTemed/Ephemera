@@ -1,5 +1,5 @@
 ---
-- name: Disabling SElinux
+- name: Disabling SElinux // infra/ansible/playbook/system/control/selinux.yaml
   hosts: dev
   become: true
   tasks:

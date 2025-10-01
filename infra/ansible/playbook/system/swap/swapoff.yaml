@@ -1,5 +1,5 @@
 ---
-- name: Disable swap
+- name: Disable swap // infra/ansible/playbook/system/swap
   hosts: dev
   become: true
   tasks:

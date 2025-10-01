@@ -1,5 +1,5 @@
 ---
-- name: Setting up kubeadm
+- name: Setting up kubeadm // infra/ansible/playbook/kubernetes/default/kubeadm.yaml
   hosts: dev
   become: true
   tasks:
@@ -25,21 +25,3 @@
         group: user
         mode: "0644"
         remote_src: true
-
-    #- name: Create .kube directory for user
-    #  ansible.builtin.file:
-    #    path: /home/user/.kube
-    #    state: directory
-    #    owner: user
-    #    group: user
-    #    mode: '0755'
-    #    recurse: true
-
-    #- name: Copy kubeconfig to user
-    #  ansible.builtin.copy:
-    #    src: /etc/kubernetes/admin.conf
-    #    dest: /home/user/.kube/config
-    #    owner: user
-    #    group: user
-    #    mode: '0644'
-    #    remote_src: true

@@ -1,5 +1,5 @@
 ---
-- name: Firewall setup
+- name: Firewall setup // infra/ansible/playbook/security/networking/firewall.yaml
   hosts: dev
   become: true
   tasks:
@@ -8,73 +8,25 @@
         name: firewalld
         enabled: true
 
-    - name: Allow TCP/Kubernetes API server
-      ansible.posix.firewalld:
-        port: 6443/tcp
+    - name: Allow TCP/UDP ports
+      ansilbe.posix.firewalld:
+        port:
+          - 6443/tcp # Kubernetes API server
+          - 2379-2380/tcp # etcd server client API
+          - 10250/tcp # Kubelet API
+          - 10259/tcp # kube-scheduler
+          - 10257/tcp # kube-controller-manager
+          - 10256/tcp # kube-proxy
+          - 30000-32767/tcp # NodePort Services
+          - 443/tcp # https
+          - 30000-32767/udp # NodePort Services
         permanent: true
         state: enabled
 
-    - name: Allow TCP/etcd server client API
+    - name: Disable TCP ports
       ansible.posix.firewalld:
-        port: 2379-2380/tcp
-        permanent: true
-        state: enabled
-
-    - name: Enable TCP/Kubelet API
-      ansible.posix.firewalld:
-        port: 10250/tcp
-        permanent: true
-        state: enabled
-
-    - name: Allow TCP/kube-scheduler
-      ansible.posix.firewalld:
-        port: 10259/tcp
-        permanent: true
-        state: enabled
-
-    - name: Allow TCP/kube-controller-manager
-      ansible.posix.firewalld:
-        port: 10257/tcp
-        permanent: true
-        state: enabled
-
-    - name: Allow TCP/kube-proxy
-      ansible.posix.firewalld:
-        port: 10256/tcp
-        permanent: true
-        state: enabled
-
-    - name: Enable TCP/NodePort Services†
-      ansible.posix.firewalld:
-        port: 30000-32767/tcp
-        permanent: true
-        state: enabled
-
-    - name: Allow TCP/https
-      ansible.posix.firewalld:
-        port: 443/tcp
-        permanent: true
-        state: enabled
-
-    - name: Allow UDP/NodePort Services†
-      ansible.posix.firewalld:
-        port: 30000-32767/udp
-        permanent: true
-        state: enabled
-
-    - name: Disable TCP/80
-      ansible.posix.firewalld:
-        port: 80/tcp
-        permanent: true
-        state: disabled
-    - name: Disable TCP/8080
-      ansible.posix.firewalld:
-        port: 8080/tcp
-        permanent: true
-        state: disabled
-
-    - name: Disable TCP/22
-      ansible.posix.firewalld:
-        port: 22/tcp
+        port:
+          - 80/tcp # http
+          - 8080/tcp # http reserve
         permanent: true
         state: disabled

@@ -1,5 +1,5 @@
 ---
-- name: Creating storageclass
+- name: Creating storageclass // infra/ansible/playbook/kubernetes/default/storage/storage.yaml
   hosts: dev
   become: true
   tasks:

@@ -1,5 +1,5 @@
 ---
-- name: Creating PVCs
+- name: Creating PVCs // infra/ansible/playbook/kubernetes/default/storage/pvc.yaml
   hosts: dev
   become: true
   tasks:
@@ -48,7 +48,7 @@
               - ReadWriteOnce
             resources:
               requests:
-                storage: 10Gi
+                storage: 20Gi
             storageClassName: local-path
 
     - name: PersistentVolumeClaim for prometheus

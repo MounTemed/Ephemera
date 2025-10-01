@@ -1,0 +1,16 @@
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: vault-lune-su
+#   namespace: vault
+# spec:
+#   entryPoints:
+#     - websecure
+#   routes:
+#     - match: Host(`vault.lune.su`)
+#       kind: Rule
+#       services:
+#         - name: #TODO
+#           port: 8200
+#   tls:
+#     certResolver: vault-tls

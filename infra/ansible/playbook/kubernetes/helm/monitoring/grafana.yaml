@@ -1,5 +1,5 @@
 ---
-- name: Installing grafana in a cluster
+- name: Installing grafana in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/grafana.yaml
   hosts: dev
   become: true
   tasks:

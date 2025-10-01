@@ -1,5 +1,5 @@
 ---
-- name: Installing elk in a cluster
+- name: Installing elk in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/elk.yaml
   hosts: dev
   become: true
   tasks:

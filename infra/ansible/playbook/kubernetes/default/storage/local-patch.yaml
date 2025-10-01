@@ -1,21 +1,22 @@
+---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: local-path-storage
+  name: nm-local-path-storage
 
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: local-path-provisioner-service-account
-  namespace: local-path-storage
+  namespace: nm-local-path-storage
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: local-path-provisioner-role
-  namespace: local-path-storage
+  namespace: nm-local-path-storage
 rules:
   - apiGroups: [""]
     resources: ["pods"]
@@ -46,7 +47,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: local-path-provisioner-bind
-  namespace: local-path-storage
+  namespace: nm-local-path-storage
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -54,7 +55,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: local-path-provisioner-service-account
-    namespace: local-path-storage
+    namespace: nm-local-path-storage
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -68,14 +69,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: local-path-provisioner-service-account
-    namespace: local-path-storage
+    namespace: nm-local-path-storage
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: local-path-provisioner
-  namespace: local-path-storage
+  namespace: nm-local-path-storage
 spec:
   replicas: 1
   selector:
@@ -129,7 +130,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: local-path-config
-  namespace: local-path-storage
+  namespace: nm-local-path-storage
 data:
   config.json: |-
     {
@@ -153,7 +154,7 @@ data:
     kind: Pod
     metadata:
       name: helper-pod
-      namespace: local-path-storage
+      namespace: nm-local-path-storage
     spec:
       priorityClassName: system-node-critical
       tolerations:

@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nexus-lune-su
+  namespace: nm-nexus
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nexus.lune.su`)
+      kind: Rule
+      services:
+        - name: nexus-nexus-repository-manager
+          port: 8081
+  tls:
+    certResolver: nexus-tls

@@ -1,5 +1,5 @@
 ---
-- name: Installing Prometheus in a cluster
+- name: Installing Prometheus in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/prometheus-comm.yaml
   hosts: dev
   become: true
   tasks:

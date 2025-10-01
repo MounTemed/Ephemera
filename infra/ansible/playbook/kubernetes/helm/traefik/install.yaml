@@ -1,5 +1,5 @@
 ---
-- name: Install traefik in cluster
+- name: Install traefik in cluster // infra/ansible/playbook/kubernetes/helm/traefik/install.yaml
   hosts: dev
   become: true
   tasks:

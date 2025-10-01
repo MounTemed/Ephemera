@@ -1,5 +1,5 @@
 ---
-- name: Updating the system and restarting it
+- name: Updating the system and restarting it # infra/ansible/playbook/end/install.yaml
   hosts: dev
   become: true
   tasks:
@@ -15,3 +15,8 @@
     - name: Display success message
       ansible.builtin.debug:
         msg: "Happy using!"
+
+    # TODO
+    # Короче надо сделать так чтоб именно в конце сразу поолучить пароль,
+    # от argocd и других средств, а там уже как кто-то решит что с ними делать
+    # /data/argocd.txt # password

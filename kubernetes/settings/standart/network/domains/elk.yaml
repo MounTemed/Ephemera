@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: els-lune-su
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+spec:
+  rules:
+    - host: "elasticsearch.lune.su"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: elasticsearch-es-http
+                port:
+                  number: 9200
+  tls:
+    - hosts:
+        - "elasticsearch.lune.su"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: elk-lune-su
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+spec:
+  rules:
+    - host: "kibana.lune.su"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: es-kb-quickstart-eck-kibana-kb-http
+                port:
+                  number: 5601
+  tls:
+    - hosts:
+        - "kibana.lune.su"

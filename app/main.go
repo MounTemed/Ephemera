@@ -10,8 +10,8 @@ func main() {
 		fmt.Fprintf(w, "Hello, Go + Ephemera + LaiMicK!!")
 	})
 
-	fmt.Println("Starting server at port 443")
-	err := http.ListenAndServeTLS(":443", "server.crt", "server.key", nil)
+	fmt.Println("Starting server at port 8080")
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		fmt.Println("Error starting the server:", err)
 	}

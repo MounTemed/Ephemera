@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: lune-su-router
+  namespace: nm-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`lune.su`)
+      kind: Rule
+      services:
+        - name: app-ephemera
+          port: 80
+  tls:
+    certResolver: ephemera-tls
