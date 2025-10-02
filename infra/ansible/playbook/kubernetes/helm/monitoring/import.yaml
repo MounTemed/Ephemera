@@ -7,6 +7,3 @@
 
 - name: Installing Node-exporter
   ansible.builtin.import_playbook: ./node-exporter.yaml
-
-- name: Installing Elastic
-  ansible.builtin.import_playbook: ./elastic.yaml

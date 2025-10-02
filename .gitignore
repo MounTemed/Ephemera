@@ -8,11 +8,3 @@ infra/terraform/tfplan
 
 # ansible
 .ansible/
-data/ansible-log.txt
-
-# docker
-infra/ansible/playbook/kubernetes/default/secrets/docker-secrets.yaml
-
-# SSL/TLS
-infra/ansible/playbook/secrets/cert.pem
-infra/ansible/playbook/secrets/privkey.pem

@@ -47,12 +47,12 @@
 | **Nexus Repository**              | Securely stores and manages container images           |
 | **ArgoCD**                        | GitOps for automated application delivery              |
 | **Cilium**                        | Provides networking and security with eBPF             |
-| **ELK Stack**                     | Centralized logging for deep insights                  |
 | **Grafana**                       | Visualizes metrics on customizable dashboards          |
 | **Prometheus & node-exporter**    | Comprehensive system and application monitoring        |
 | **Alloy**                         | Optimized data collection                              |
 | **Traefik**                       | Fast reverse proxy server                              |
 | **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
+| **OpenTofu**                      | We manage infrastructure as code                       |
 
 </details>
 

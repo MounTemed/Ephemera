@@ -3,7 +3,6 @@ global:
     domain: lune.su
     hostSuffix: staging
     https: true
-    externalIP: ""
     gitlab:
       name: gitlab.lune.su
       https: true
@@ -34,8 +33,8 @@ global:
       traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
     tls:
-      enabled: true
-      secretName: tls-key
+      enabled: false # TODO: test
+      secretName: gitlab-tls
     configureCertmanager: false
   image:
     pullSecrets:
@@ -54,23 +53,12 @@ traefik:
 gitlab:
   webservice:
     replicas: 1
-    resources:
-      requests:
-        memory: "2056Mi"
-        cpu: "2000m"
-      limits:
-        memory: "4Gi"
-        cpu: "3000m"
 
   ssh:
     enabled: true
     host: gitlab.lune.su
     service:
       externalPort: 22
-
-certmanager-issuer:
-  email: lunes@uv.do
-  clusterIssuer: letsencrypt-prod
 
 postgresql:
   install: true

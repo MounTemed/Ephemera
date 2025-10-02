@@ -9,14 +9,16 @@ spec:
   source:
     repoURL: https://github.com/MounTemed/Ephemera
     targetRevision: main
-    path: kubernetes/
+    path: kubernetes/helm/
     directory:
       recurse: true
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
+      enabled: true
       prune: true
+      allowEmpty: true
       selfHeal: true
 
 ---
@@ -37,5 +39,7 @@ spec:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
+      enabled: true
       prune: true
+      allowEmpty: true
       selfHeal: true

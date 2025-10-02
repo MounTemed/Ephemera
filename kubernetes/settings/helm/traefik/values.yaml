@@ -6,9 +6,6 @@ deployment:
     - name: docker-secrets
 
 service:
-  type: NodePort
-  ports:
-    web:
-      nodePort: 80
-    websecure:
-      nodePort: 443
+  type: LoadBalancer
+
+hostNetwork: true
