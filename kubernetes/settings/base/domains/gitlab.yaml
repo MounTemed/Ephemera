@@ -1,34 +1,43 @@
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
-  name: gitlab-lune-su
+  name: route-gitlab-lune-su
   namespace: nm-gitlab
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`gitlab.lune.su`)
-      kind: Rule
-      services:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: nm-traefik
+      sectionName: websecure
+  hostname:
+    - "gitlab.lune.su"
+  rules:
+    - mathes:
+        - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
         - name: gitlab-webservice-default
           port: 8080
-  tls:
-    certResolver: gitlab-tls
+          kind: Service
 
 ---
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
-  name: registry-lune-su
-  namespace: gitlab
+  name: route-registry-lune-su
+  namespace: nm-gitlab
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`registry.lune.su`)
-      kind: Rule
-      services:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: nm-traefik
+  hostname:
+    - "registry.lune.su"
+  rules:
+    - mathes:
+        - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
         - name: gitlab-registry
           port: 5000
-  tls:
-    certResolver: gitlab-tls
+          kind: Service

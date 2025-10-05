@@ -1,19 +1,21 @@
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
-  name: argo-lune-su
+  name: route-argo-lune-su
   namespace: nm-argo
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`argo.lune.su`)
-      kind: Rule
-      services:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: nm-traefik
+      sectionName: websecure
+  hostnames:
+    - "argo.lune.su"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
         - name: argo-argocd-server
           port: 80
-  tls:
-    certResolver: argo-tls
+          kind: Service

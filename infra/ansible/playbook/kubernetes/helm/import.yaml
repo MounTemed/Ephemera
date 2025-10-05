@@ -8,6 +8,9 @@
 - name: Installing Metallb
   ansible.builtin.import_playbook: ./metallb/install.yaml
 
+- name: Installing Сert-manager
+  ansuble.builtin.import_playbook: ./cert-manager/install.yaml
+
 - name: Installing Traefik
   ansible.builtin.import_playbook: ./traefik/install.yaml
 
@@ -19,8 +22,6 @@
 
 - name: Installing Monitoring
   ansible.builtin.import_playbook: ./monitoring/import.yaml
-  tags: test
 
 - name: Installing ArgoCD
   ansible.builtin.import_playbook: ./argo/install.yaml
-  tags: test

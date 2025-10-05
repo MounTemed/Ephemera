@@ -9,10 +9,10 @@
     namespaces:
       - nm-argo
       - nm-gitlab
-      - nm-elk
       - nm-monitoring
       - nm-nexus
       - nm-traefik
+      - nm-cert-manager
       - nm-local-path-storage
 
   vars_files:

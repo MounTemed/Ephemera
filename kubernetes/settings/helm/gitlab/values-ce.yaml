@@ -2,21 +2,16 @@ global:
   hosts:
     domain: lune.su
     hostSuffix: staging
-    https: true
+    https: false
     gitlab:
       name: gitlab.lune.su
-      https: true
+      https: false
     registry:
       name: registry.lune.su
-      https: true
+      https: false
 
-  minio:
-    enabled: false
-  appConfig:
-    object_store:
-      enabled: true
-      connection:
-        secret: gitlab-s3-secret
+  initialRootPassword:
+    key: GJKrhjjcne13!
 
   common:
     labels:
@@ -29,20 +24,12 @@ global:
     enabled: true
     provider: traefik
     class: traefik
-    annotations:
-      traefik.ingress.kubernetes.io/router.tls: "true"
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
     tls:
-      enabled: false # TODO: test
-      secretName: gitlab-tls
+      enabled: true
     configureCertmanager: false
   image:
     pullSecrets:
       - name: docker-secrets
-
-  gitlab-shell:
-    traefik:
-      entrypoint: "gitlab-shell"
 
 nginx-ingress:
   enabled: false
@@ -53,21 +40,3 @@ traefik:
 gitlab:
   webservice:
     replicas: 1
-
-  ssh:
-    enabled: true
-    host: gitlab.lune.su
-    service:
-      externalPort: 22
-
-postgresql:
-  install: true
-  image:
-    pullSecrets:
-      - name: docker-secrets
-
-redis:
-  install: true
-  image:
-    pullSecrets:
-      - name: docker-secrets

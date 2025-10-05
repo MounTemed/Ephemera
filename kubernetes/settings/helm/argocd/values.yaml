@@ -1,15 +1,6 @@
 global:
   domain: argo.lune.su
 
-server:
-  ingress:
-    enabled: true
-    ingressClassName: traefik
-    tls: true
-    extraHosts:
-      - name: argocd-alias.lune.su
-        path: /
-
 configs:
   params:
     server.insecure: "true"

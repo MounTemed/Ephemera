@@ -1,16 +1,21 @@
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
-  name: prometheus-lune-su
+  name: route-prometheus-lune-su
   namespace: nm-monitoring
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`prometheus.lune.su`)
-      kind: Rule
-      services:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: nm-traefik
+      sectionName: websecure
+  hostnames:
+    - "prometheus.lune.su"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
         - name: prometheus-server
           port: 80
-  tls:
-    certResolver: prometheus-tls
+          kind: Service
