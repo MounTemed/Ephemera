@@ -5,9 +5,9 @@ metadata:
   namespace: nm-gitlab
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: gitlab-traefik-gateway
       namespace: nm-traefik
-      sectionName: websecure
+      sectionName: web
   hostname:
     - "gitlab.lune.su"
   rules:
@@ -28,8 +28,9 @@ metadata:
   namespace: nm-gitlab
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: gitlab-run-traefik-gateway
       namespace: nm-traefik
+      sectionName: web
   hostname:
     - "registry.lune.su"
   rules:

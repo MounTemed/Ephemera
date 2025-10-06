@@ -1,0 +1,29 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: grafana-traefik-gateway
+  namespace: nm-traefik
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: web
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: websecure
+      port: 443
+      protocol: HTTPS
+      hostname: "grafana.lune.su"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: grafana-lune-tls
+            kind: Secret
+            group: ""

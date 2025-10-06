@@ -5,9 +5,9 @@ metadata:
   namespace: nm-app
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: lune-traefik-gateway
       namespace: nm-traefik
-      sectionName: websecure
+      sectionName: web
   hostnames:
     - "lune.su"
   rules:

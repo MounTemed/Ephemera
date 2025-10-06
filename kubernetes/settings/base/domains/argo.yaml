@@ -5,9 +5,9 @@ metadata:
   namespace: nm-argo
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: argo-traefik-gateway
       namespace: nm-traefik
-      sectionName: websecure
+      sectionName: web
   hostnames:
     - "argo.lune.su"
   rules:

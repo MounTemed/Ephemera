@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lune-cert
+  namespace: nm-traefik
+spec:
+  secretName: lune-tls
+  dnsNames:
+    - lune.su
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

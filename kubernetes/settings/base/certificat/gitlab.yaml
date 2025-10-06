@@ -1,0 +1,26 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitlab-lune-cert
+  namespace: nm-traefik
+spec:
+  secretName: gitlab-lune-tls
+  dnsNames:
+    - gitlab.lune.su
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitlab-run-lune-cert
+  namespace: nm-traefik
+spec:
+  secretName: gitlab-run-lune-tls
+  dnsNames:
+    - registry.lune.su
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

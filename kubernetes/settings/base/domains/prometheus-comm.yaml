@@ -5,9 +5,9 @@ metadata:
   namespace: nm-monitoring
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: prometheus-traefik-gateway
       namespace: nm-traefik
-      sectionName: websecure
+      sectionName: web
   hostnames:
     - "prometheus.lune.su"
   rules:

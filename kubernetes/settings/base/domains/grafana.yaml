@@ -5,9 +5,9 @@ metadata:
   namespace: nm-monitoring
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: grafana-traefik-gateway
       namespace: nm-traefik
-      sectionName: websecure
+      sectionName: web
   hostnames:
     - "grafana.lune.su"
   rules:
