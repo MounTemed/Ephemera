@@ -13,7 +13,9 @@
 
 - name: Creating space
   ansible.builtin.import_playbook: ./space/import.yaml
-  tags: test
 
 - name: Creating storage
   ansible.builtin.import_playbook: ./storage/import.yaml
+
+- name: Installing gateway api
+  ansible.builtin.import_playbook: ./gateway/install.yaml

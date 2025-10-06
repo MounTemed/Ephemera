@@ -2,8 +2,8 @@ hostNetwork: true
 ports:
   web:
     port: 80
-  websecure:
-    port: 443
+  # websecure:
+  #   port: 443
 
 deployment:
   enable: true
@@ -36,11 +36,11 @@ gateway:
       protocol: HTTP
       namespacePolicy:
         from: All
-    websecure:
-      port: 443
-      protocol: HTTPS
-      namespacePolicy:
-        from: All
+    # websecure:
+    #   port: 443
+    #   protocol: HTTPS
+    #   namespacePolicy:
+    #     from: All
 
 logs:
   general:
