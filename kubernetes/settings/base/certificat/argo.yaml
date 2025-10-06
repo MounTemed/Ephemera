@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argo-lune-cert
+  namespace: nm-traefik
+spec:
+  secretName: argo-lune-tls
+  dnsNames:
+    - argo.lune.su
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: route-argo-lune-su
+  namespace: nm-argo
+spec:
+  parentRefs:
+    - name: argo-traefik-gateway
+      namespace: nm-traefik
+      sectionName: web
+  hostnames:
+    - "argo.lune.su"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: argo-argocd-server
+          port: 80
+          kind: Service

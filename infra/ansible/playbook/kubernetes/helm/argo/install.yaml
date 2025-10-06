@@ -1,5 +1,5 @@
 ---
-- name: Installing ArgoCD
+- name: Installing ArgoCD // infra/ansible/playbook/kubernetes/helm/argo/install.yaml
   hosts: dev
   become: true
 
@@ -11,8 +11,14 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/argocd/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/argocd/values.yaml
         dest: /home/user/argo.yaml
+        remote_src: false
+
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/base/argocd/config.yaml
+        dest: /home/user/argo-config.yaml
         remote_src: false
 
     - name: Install ArgoCD
@@ -22,8 +28,17 @@
         release_namespace: nm-argo
         values_files:
           - /home/user/argo.yaml
+        wait: true
+
+    - name: Installing config for argo
+      kubernetes.core.k8s:
+        src: /home/user/argo-config.yaml
+        state: present
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        path: /home/user/argo.yaml
+        path: "{{ item }}"
         state: absent
+      loop:
+        - /home/user/argo-config.yaml
+        - /home/user/argo.yaml

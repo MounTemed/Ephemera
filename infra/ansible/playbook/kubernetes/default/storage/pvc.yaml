@@ -1,5 +1,5 @@
 ---
-- name: Creating PVCs
+- name: Creating PVCs // infra/ansible/playbook/kubernetes/default/storage/pvc.yaml
   hosts: dev
   become: true
   tasks:
@@ -9,22 +9,6 @@
         kind: PersistentVolumeClaim
         namespace: nm-gitlab
         name: gitlab-pvc
-        state: present
-        resource_definition:
-          spec:
-            accessModes:
-              - ReadWriteOnce
-            resources:
-              requests:
-                storage: 20Gi
-            storageClassName: local-path
-
-    - name: PersistentVolumeClaim for elk
-      kubernetes.core.k8s:
-        api_version: v1
-        kind: PersistentVolumeClaim
-        namespace: nm-elk
-        name: elk-pvc
         state: present
         resource_definition:
           spec:
@@ -48,7 +32,7 @@
               - ReadWriteOnce
             resources:
               requests:
-                storage: 10Gi
+                storage: 20Gi
             storageClassName: local-path
 
     - name: PersistentVolumeClaim for prometheus

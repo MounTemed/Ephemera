@@ -1,5 +1,5 @@
 ---
-- name: Loading python and after the Kubernetes library
+- name: Loading python and after the Kubernetes library // infra/ansible/playbook/packages/plugin-k8s/install.yaml
   hosts: dev
   become: true
   tasks:
@@ -16,3 +16,12 @@
     - name: Install Python Kubernetes library
       ansible.builtin.pip:
         name: kubernetes
+        executable: /usr/bin/pip3.9
+        state: present
+
+    - name: Upgrade oauthlib for kubernetes compatibility
+      ansible.builtin.pip:
+        name: "oauthlib>=3.2.0"
+        executable: /usr/bin/pip3.9
+        state: present
+        break_system_packages: true

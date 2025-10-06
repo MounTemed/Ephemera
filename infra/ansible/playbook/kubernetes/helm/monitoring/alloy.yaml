@@ -1,0 +1,24 @@
+---
+- name: Installing Alloy // infra/ansible/playbook/kubernetes/helm/alloy/install.yaml
+  hosts: dev
+  become: true
+
+  tasks:
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/helm/monitoring/grafana/alloy/values.yaml
+        dest: /home/user/alloy.yaml
+        remote_src: false
+
+    - name: Install Alloy
+      kubernetes.core.helm:
+        name: alloy
+        chart_ref: grafana/alloy
+        release_namespace: nm-monitoring
+        values_files:
+          - /home/user/alloy.yaml
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        path: /home/user/alloy.yaml
+        state: absent

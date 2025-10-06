@@ -1,5 +1,5 @@
 ---
-- name: Install and deploy Cilium
+- name: Install and deploy Cilium // infra/ansible/playbook/kubernetes/default/cilium.yaml
   hosts: dev
   become: true
   tasks:

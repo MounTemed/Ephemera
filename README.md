@@ -1,4 +1,4 @@
-<div align="center"> 
+<div align="center">
   <img src="./.github/assets/Ephemera.png" alt="Ephemera logo" width="300">
 </div>
 
@@ -27,8 +27,8 @@
 <details>
 <summary>✨ Features</summary>
 
-- **Effortless Installation** – Get a fully functional Kubernetes orchestrator up and running quickly and smoothly 
-- **Perfect Reproducibility** – Simply replace the secrets, and you're guaranteed a 100% idempotent, working environment every single time. Consistency is key 
+- **Effortless Installation** – Get a fully functional Kubernetes orchestrator up and running quickly and smoothly
+- **Perfect Reproducibility** – Simply replace the secrets, and you're guaranteed a 100% idempotent, working environment every single time. Consistency is key
 - **Rigorous CI/CD Pipeline** – For every pull request, a dedicated VPC is automatically provisioned in Timeweb Cloud using Terraform, where we run the most thorough and demanding tests to ensure unwavering reliability
 
 </details>
@@ -38,19 +38,21 @@
 
 | Technology                         | Purpose                                               |
 |------------------------------------|-------------------------------------------------------|
-| **Golang**                        | Foundation for high-performance application code      |
-| **Podman**                        | Builds secure, rootless containers                    |
-| **CRI-O**                         | Lightweight, Kubernetes-native container runtime      |
-| **Kubernetes**                    | For powerful orchestration of containerized workloads |
-| **Helm**                          | Simplifies deployment with handy charts               |
-| **Ansible**                       | Automates setup for simple, automated deployment      |
-| **Nexus Repository**              | Securely stores and manages container images          |
-| **ArgoCD**                        | GitOps for automated application delivery             |
-| **Cilium**                        | Provides networking and security with eBPF            |
-| **ELK Stack**                     | Centralized logging for deep insights                 |
-| **Grafana**                       | Visualizes metrics on customizable dashboards         |
-| **Prometheus & node-exporter**    | Comprehensive system and application monitoring       |
-| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                  |
+| **Golang**                        | Foundation for high-performance application code       |
+| **Podman**                        | Builds secure, rootless containers                     |
+| **CRI-O**                         | Lightweight, Kubernetes-native container runtime       |
+| **Kubernetes**                    | For powerful orchestration of containerized workloads  |
+| **Helm**                          | Simplifies deployment with handy charts                |
+| **Ansible**                       | Automates setup for simple, automated deployment       |
+| **Nexus Repository**              | Securely stores and manages container images           |
+| **ArgoCD**                        | GitOps for automated application delivery              |
+| **Cilium**                        | Provides networking and security with eBPF             |
+| **Grafana**                       | Visualizes metrics on customizable dashboards          |
+| **Prometheus & node-exporter**    | Comprehensive system and application monitoring        |
+| **Alloy**                         | Optimized data collection                              |
+| **Traefik**                       | Fast reverse proxy server                              |
+| **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
+| **OpenTofu**                      | We manage infrastructure as code                       |
 
 </details>
 

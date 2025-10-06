@@ -1,0 +1,20 @@
+---
+- name: Install gateway // infra/ansible/playbook/kubernetes/default/gateway/install.yaml
+  hosts: dev
+  become: true
+  tasks:
+    - name: Download gateway file
+      ansible.builtin.get_url:
+        url: https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
+        dest: /tmp/gateway-install.yaml
+        mode: "0644"
+
+    - name: Installing gateway API
+      kubernetes.core.k8s:
+        src: /tmp/gateway-install.yaml
+        state: present
+
+    - name: Remove gateway file
+      ansible.builtin.file:
+        path: /tmp/gateway-install.yaml
+        state: absent

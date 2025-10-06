@@ -1,0 +1,43 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: lunes@uv.do
+    privateKeySecretRef:
+      name: letsencrypt-prod-account-key
+    solvers:
+      - http01:
+          gatewayHTTPRoute:
+            parentRefs:
+              - name: argo-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+              - name: gitlab-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+              - name: gitlab-run-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+              - name: grafana-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+              - name: lune-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+              - name: nexus-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+              - name: prometeheus-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web

@@ -1,0 +1,43 @@
+---
+- name: Installing MettaLB in a cluster an helm // infra/ansible/playbook/kubernetes/helm/metallb/install.yaml
+  hosts: dev
+  become: true
+  tasks:
+    - name: Add MettaLB chart repository to Helm
+      kubernetes.core.helm_repository:
+        name: metallb
+        repo_url: https://metallb.github.io/metallb
+
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/helm/mettalb/values.yaml
+        dest: /home/user/metallb-values.yaml
+        remote_src: false
+
+    - name: Copy the required config.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/base/metallb/config.yaml
+        dest: /home/user/metallb-config.yaml
+        remote_src: false
+
+    - name: Install MettaLB
+      kubernetes.core.helm:
+        name: metallb
+        chart_ref: metallb/metallb
+        release_namespace: kube-system
+        values_files:
+          - /home/user/metallb-values.yaml
+        wait: true
+
+    - name: Install the settings right away
+      kubernetes.core.k8s:
+        src: /home/user/metallb-config.yaml
+        state: present
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /home/user/metallb-config.yaml
+        - /home/user/metallb-values.yaml

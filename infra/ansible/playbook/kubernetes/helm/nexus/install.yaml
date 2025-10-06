@@ -1,5 +1,5 @@
 ---
-- name: Installing Nexus in a cluster
+- name: Installing Nexus in a cluster // infra/ansible/playbook/kubernetes/helm/nexus/install.yaml
   hosts: dev
   become: true
   tasks:
@@ -10,7 +10,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/nexus/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/nexus/values.yaml
         dest: /home/user/nexus.yaml
         remote_src: false
 

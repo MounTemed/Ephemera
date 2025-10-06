@@ -1,5 +1,5 @@
 ---
-- name: Install traefik in cluster
+- name: Install traefik in cluster // infra/ansible/playbook/kubernetes/helm/traefik/install.yaml
   hosts: dev
   become: true
   tasks:
@@ -10,7 +10,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/traefik/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/traefik/values.yaml
         dest: /home/user/traefik.yaml
         remote_src: false
 

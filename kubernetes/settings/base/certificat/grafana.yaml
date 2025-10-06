@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-lune-cert
+  namespace: nm-traefik
+spec:
+  secretName: grafana-lune-tls
+  dnsNames:
+    - grafana.lune.su
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

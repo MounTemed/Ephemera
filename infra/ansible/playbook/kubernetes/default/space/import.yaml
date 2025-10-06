@@ -1,0 +1,5 @@
+- name: Creating a namespace
+  ansible.builtin.import_playbook: ./namespace.yaml
+
+- name: Creating a docker secrets
+  ansible.builtin.import_playbook: ./docker.yaml

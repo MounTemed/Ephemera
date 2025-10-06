@@ -1,5 +1,5 @@
 ---
-- name: Installing node-exporter in a cluster
+- name: Installing node-exporter in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/node-exporter.yaml
   hosts: dev
   become: true
   tasks:
@@ -8,8 +8,19 @@
         name: node-exporter
         repo_url: https://prometheus-community.github.io/helm-charts
 
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/helm/monitoring/node-exporter/values.yaml
+        dest: /home/user/node-exporter.yaml
+        remote_src: false
+
     - name: Install node-exporter
       kubernetes.core.helm:
         name: node-exporter
         chart_ref: node-exporter/prometheus-node-exporter
         release_namespace: nm-monitoring
+
+    - name: Delete the file that is no longer needed
+      ansible.builtin.file:
+        path: /home/user/node-exporter.yaml
+        state: absent

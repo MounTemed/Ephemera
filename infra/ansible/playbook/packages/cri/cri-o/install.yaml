@@ -1,5 +1,5 @@
 ---
-- name: Installing CRI-O
+- name: Installing CRI-O // infra/ansible/playbook/packages/cri/cri-o/install.yaml
   hosts: dev
   become: true
   tasks:

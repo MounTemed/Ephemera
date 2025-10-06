@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: route-prometheus-lune-su
+  namespace: nm-monitoring
+spec:
+  parentRefs:
+    - name: prometheus-traefik-gateway
+      namespace: nm-traefik
+      sectionName: web
+  hostnames:
+    - "prometheus.lune.su"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: prometheus-server
+          port: 80
+          kind: Service

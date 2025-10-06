@@ -1,5 +1,5 @@
 ---
-- name: Installing helm
+- name: Installing helm // infra/ansible/playbook/kubernetes/helm/install.yaml
   hosts: dev
   become: true
   tasks:

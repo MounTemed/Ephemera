@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: route-grafana-lune-su
+  namespace: nm-monitoring
+spec:
+  parentRefs:
+    - name: grafana-traefik-gateway
+      namespace: nm-traefik
+      sectionName: web
+  hostnames:
+    - "grafana.lune.su"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: grafana
+          port: 80
+          kind: Service

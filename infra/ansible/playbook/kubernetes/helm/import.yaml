@@ -2,25 +2,29 @@
 - name: Installing Helm
   ansible.builtin.import_playbook: ./install.yaml
 
-# - name: Installing Vault
-#   ansible.builtin.import_playbook: ./vault/install.yaml
+- name: Settings CNI
+  ansible.builtin.import_playbook: ./cni/install.yaml
+
+- name: Installing Metallb
+  ansible.builtin.import_playbook: ./metallb/install.yaml
+
 - name: Installing Traefik
   ansible.builtin.import_playbook: ./traefik/install.yaml
 
+- name: Installing Сert-manager
+  ansible.builtin.import_playbook: ./cert-manager/install.yaml
+
 - name: Installing Nexus
   ansible.builtin.import_playbook: ./nexus/install.yaml
+  tags: test
 
-- name: Installing Gitlab
-  ansible.builtin.import_playbook: ./gitlab/install.yaml
+# - name: Installing Gitlab
+#   ansible.builtin.import_playbook: ./gitlab/install.yaml
 
 - name: Installing Monitoring
   ansible.builtin.import_playbook: ./monitoring/import.yaml
+  tags: test
 
 - name: Installing ArgoCD
   ansible.builtin.import_playbook: ./argo/install.yaml
-# TODO
-# helm upgrade cilium cilium/cilium --version 1.18.1 \
-#   --namespace $CILIUM_NAMESPACE \
-#   --reuse-values \
-#   --set hubble.relay.enabled=true \
-#   --set hubble.ui.enabled=true
+  tags: test

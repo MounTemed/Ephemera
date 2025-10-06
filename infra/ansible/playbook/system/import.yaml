@@ -1,14 +1,9 @@
 ---
-- name: Disabling SELinux
-  ansible.builtin.import_playbook: ./control/selinux.yaml
-
 - name: Enabling forward
   ansible.builtin.import_playbook: ./network/forward.yaml
 
-- name: Disable firewall (temporarily)
+- name: Disable firewall // temporarily
   ansible.builtin.import_playbook: ./network/firewalld.yaml
 
 - name: Disable ivp6
   ansible.builtin.import_playbook: ./network/ipv6.yaml
-#- name: Disable Swap
-#  ansible.builtin.import_playbook: ./swap/swapoff.yaml

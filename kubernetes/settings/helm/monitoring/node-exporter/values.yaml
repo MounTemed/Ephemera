@@ -1,0 +1,6 @@
+imagePullSecrets:
+  - name: docker-secrets # ??? the documentation is crap
+
+global:
+  imagePullSecrets:
+    - name: docker-secrets # ??? the documentation is crap

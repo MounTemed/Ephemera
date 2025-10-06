@@ -1,0 +1,24 @@
+---
+- name: Create namespaces // infra/ansible/playbook/kubernetes/default/space/namespace.yaml
+  hosts: dev
+  become: true
+  vars:
+    namespaces:
+      - nm-argo
+      - nm-gitlab
+      - nm-monitoring
+      - nm-nexus
+      - nm-traefik
+      - nm-cert-manager
+      - nm-local-path-storage
+
+  tasks:
+    - name: Ensure namespaces exist
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: "{{ item }}"
+      loop: "{{ namespaces }}"
