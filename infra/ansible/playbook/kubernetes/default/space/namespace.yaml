@@ -10,6 +10,7 @@
       - nm-nexus
       - nm-traefik
       - nm-cert-manager
+      - nm-app
       - nm-local-path-storage
 
   tasks:

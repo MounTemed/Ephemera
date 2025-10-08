@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: lune-traefik-gateway
       namespace: nm-traefik
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "lune.su"
   rules:

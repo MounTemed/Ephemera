@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: grafana-traefik-gateway
       namespace: nm-traefik
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "grafana.lune.su"
   rules:

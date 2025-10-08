@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: gitlab-traefik-gateway
       namespace: nm-traefik
-      sectionName: web
+      sectionName: websecure
   hostname:
     - "gitlab.lune.su"
   rules:

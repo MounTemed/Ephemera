@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: prometheus-traefik-gateway
       namespace: nm-traefik
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "prometheus.lune.su"
   rules:

@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: argo-traefik-gateway
       namespace: nm-traefik
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "argo.lune.su"
   rules:

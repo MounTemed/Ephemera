@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/MounTemed/Ephemera
     targetRevision: main
-    path: kubernetes/helm/
+    path: kubernetes/settings/helm/
     directory:
       recurse: true
   destination:
@@ -32,7 +32,7 @@ spec:
   source:
     repoURL: https://github.com/MounTemed/Ephemera
     targetRevision: main
-    path: kubernetes/base/
+    path: kubernetes/settings/base/
     directory:
       recurse: true
   destination:

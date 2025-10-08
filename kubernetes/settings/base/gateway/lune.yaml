@@ -3,8 +3,6 @@ kind: Gateway
 metadata:
   name: lune-traefik-gateway
   namespace: nm-traefik
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   gatewayClassName: traefik
   listeners:
