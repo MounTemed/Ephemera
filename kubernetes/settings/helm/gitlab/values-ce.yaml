@@ -1,42 +1,30 @@
 global:
+  PullSecrets:
+    - name: docker-secrets
   hosts:
-    domain: lune.su
-    hostSuffix: staging
-    https: false
-    gitlab:
-      name: gitlab.lune.su
-      https: false
-    registry:
-      name: registry.lune.su
-      https: false
-
-  initialRootPassword:
-    key: GJKrhjjcne13!
-
-  common:
-    labels:
-      environment: staging
-    nodeSelector:
-      node-role.kubernetes.io/gitlab: "true"
-    affinity: {}
-
+    domain: gitlab.lune.su
+    https: true
   ingress:
-    enabled: true
     provider: traefik
-    class: traefik
+    enabled: true
+    path: /
     tls:
       enabled: true
+      SecretName: gitlab-lune-tls
     configureCertmanager: false
-  image:
-    pullSecrets:
-      - name: docker-secrets
+  initialRootPassword:
+    secret: gitlab-secret-password
+    key: password
+  edition: ce
 
-nginx-ingress:
-  enabled: false
-
-traefik:
+gitlab-runner:
   install: false
 
-gitlab:
-  webservice:
-    replicas: 1
+installCertmanager: false
+
+certmanager:
+  installCRDs: false
+  nameOverride: certmanager
+
+nginx-ingress: &nginx-ingress
+  enabled: false

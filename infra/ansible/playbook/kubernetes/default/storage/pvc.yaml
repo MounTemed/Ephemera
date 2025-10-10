@@ -16,8 +16,8 @@
               - ReadWriteOnce
             resources:
               requests:
-                storage: 20Gi
-            storageClassName: local-path
+                storage: 50Gi
+            storageClassName: standard
 
     - name: PersistentVolumeClaim for nexus
       kubernetes.core.k8s:
@@ -33,7 +33,7 @@
             resources:
               requests:
                 storage: 20Gi
-            storageClassName: local-path
+            storageClassName: standard
 
     - name: PersistentVolumeClaim for prometheus
       kubernetes.core.k8s:
@@ -49,4 +49,4 @@
             resources:
               requests:
                 storage: 5Gi
-            storageClassName: local-path
+            storageClassName: standard

@@ -26,6 +26,9 @@
         release_namespace: nm-gitlab
         values_files:
           - /home/user/gitlab-ce.yaml
+        set_values:
+          - value: installCertmanager=false
+          - value: certmanager-issuer.email=lunes@uv.do
 
     - name: Install gitlab-runners
       kubernetes.core.helm:
@@ -40,5 +43,5 @@
         path: "{{ item }}"
         state: absent
       loop:
-        - /home/user/gitlab-ci.yaml
+        - /home/user/gitlab-ce.yaml
         - /home/user/gitlab-ru.yaml

@@ -3,3 +3,6 @@
 
 - name: Creating a docker secrets
   ansible.builtin.import_playbook: ./docker.yaml
+
+- name: Creating a password secrets
+  ansible.builtin.import_playbook: ./password.yaml
