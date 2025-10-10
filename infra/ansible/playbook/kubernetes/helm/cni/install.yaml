@@ -26,3 +26,8 @@
       ansible.builtin.file:
         path: /home/user/cilium.yaml
         state: absent
+
+    - name: Delete previous CNI
+      ansible.builtin.file:
+        path: /usr/local/bin/cilium
+        state: absent
