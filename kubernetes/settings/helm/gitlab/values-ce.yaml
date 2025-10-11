@@ -16,6 +16,8 @@ global:
     secret: gitlab-secret-password
     key: password
   edition: ce
+  minio:
+    enabled: false
 
 gitlab-runner:
   install: false
