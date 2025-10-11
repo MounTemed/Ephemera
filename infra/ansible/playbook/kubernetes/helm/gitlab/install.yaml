@@ -12,14 +12,9 @@
 
     - name: Copy the required values.yaml gitlab-ce
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/helm/gitlab/values-ce.yaml
+        src: ../../../../../../kubernetes/settings/helm/gitlab/values.yaml
         dest: /home/user/gitlab-ce.yaml
         remote_src: false
-
-    - name: Copy the required values.yaml gitlab-runners
-      ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/helm/gitlab/values-ru.yaml
-        dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce
       kubernetes.core.helm:
@@ -28,22 +23,8 @@
         release_namespace: nm-gitlab
         values_files:
           - /home/user/gitlab-ce.yaml
-        set_values:
-          - value: installCertmanager=false
-          - value: certmanager-issuer.email=lunes@uv.do
-
-    - name: Install gitlab-runners
-      kubernetes.core.helm:
-        name: gitlab-runners
-        chart_ref: gitlab/gitlab-runner
-        release_namespace: nm-gitlab
-        values_files:
-          - /home/user/gitlab-ru.yaml
 
     - name: Delete the file that is no longer needed
       ansible.builtin.file:
-        path: "{{ item }}"
+        path: /home/user/gitlab-ce.yaml
         state: absent
-      loop:
-        - /home/user/gitlab-ce.yaml
-        - /home/user/gitlab-ru.yaml
