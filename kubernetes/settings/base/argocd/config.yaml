@@ -43,3 +43,26 @@ spec:
       prune: true
       allowEmpty: true
       selfHeal: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app
+  namespace: nm-argo
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/MounTemed/Ephemera
+    targetRevision: main
+    path: kubernetes/apps/
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      allowEmpty: true
+      selfHeal: true
