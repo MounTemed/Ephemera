@@ -1,0 +1,38 @@
+global:
+  PullSecrets:
+    - name: docker-secrets
+  hosts:
+    domain: gitlab.lune.su
+    https: true
+  ingress:
+    provider: traefik
+    enabled: true
+    path: /
+    tls:
+      enabled: true
+      SecretName: gitlab-lune-tls
+    configureCertmanager: false
+  initialRootPassword:
+    secret: gitlab-secret-password
+    key: password
+  edition: ce
+  minio:
+    enabled: true
+
+gitlab-runner:
+  install: true
+  podSecurityContext:
+    seccompProfile:
+      type: "RuntimeDefault"
+
+installCertmanager: false
+
+prometheus:
+  install: false
+
+certmanager:
+  installCRDs: false
+  nameOverride: certmanager
+
+nginx-ingress: &nginx-ingress
+  enabled: false
