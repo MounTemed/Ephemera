@@ -13,7 +13,6 @@ WORKDIR /app
 
 COPY --from=builder /app/server /app/server
 COPY --from=builder /etc/passwd /etc/passwd
-COPY index.html /app/index.html
 
 USER const
 
