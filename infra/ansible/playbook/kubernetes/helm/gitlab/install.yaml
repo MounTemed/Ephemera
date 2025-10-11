@@ -1,6 +1,8 @@
 ---
 - name: Installing gitlab in a cluster // infra/ansible/playbook/kubernetes/helm/gitlab/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - prod
   become: true
   tasks:
     - name: Add gitlab chart repository to Helm
@@ -10,13 +12,13 @@
 
     - name: Copy the required values.yaml gitlab-ce
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/base/gitlab/config-ce.yaml
+        src: ../../../../../../kubernetes/settings/helm/gitlab/values-ce.yaml
         dest: /home/user/gitlab-ce.yaml
         remote_src: false
 
     - name: Copy the required values.yaml gitlab-runners
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/base/gitlab/config-ru.yaml
+        src: ../../../../../../kubernetes/settings/helm/gitlab/values-ru.yaml
         dest: /home/user/gitlab-ru.yaml
 
     - name: Install gitlab-ce
