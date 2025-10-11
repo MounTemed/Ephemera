@@ -14,8 +14,20 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/helm/argocd/values.yaml
-        dest: /home/user/argo.yaml
+        src: ../../../../../../kubernetes/settings/helm/argocd/values-argo.yaml
+        dest: /home/user/argo-standart.yaml
+        remote_src: false
+
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/helm/argocd/values-rollouts.yaml
+        dest: /home/user/argo-rollouts.yaml
+        remote_src: false
+
+    - name: Copy the required values.yaml
+      ansible.builtin.copy:
+        src: ../../../../../../kubernetes/settings/helm/argocd/values-events.yaml
+        dest: /home/user/argo-events.yaml
         remote_src: false
 
     - name: Copy the required values.yaml
@@ -26,11 +38,29 @@
 
     - name: Install ArgoCD
       kubernetes.core.helm:
-        name: argo
+        name: argocd
         chart_ref: argo/argo-cd
         release_namespace: nm-argo
         values_files:
-          - /home/user/argo.yaml
+          - /home/user/argo-standart.yaml
+        wait: true
+
+    - name: Install Argo Rollouts
+      kubernetes.core.helm:
+        name: argo-rollout
+        chart_ref: argo/argo-rollouts
+        release_namespace: nm-argo
+        values_files:
+          - /home/user/argo-rollouts.yaml
+        wait: true
+
+    - name: Install Argo Events
+      kubernetes.core.helm:
+        name: argo-events
+        chart_ref: argo/argo-events
+        release_namespace: nm-argo
+        values_files:
+          - /home/user/argo-events.yaml
         wait: true
 
     - name: Installing config for argo
@@ -43,5 +73,7 @@
         path: "{{ item }}"
         state: absent
       loop:
+        - /home/user/argo-standart.yaml
+        - /home/user/argo-rollouts.yaml
+        - /home/user/argo-events.yaml
         - /home/user/argo-config.yaml
-        - /home/user/argo.yaml
