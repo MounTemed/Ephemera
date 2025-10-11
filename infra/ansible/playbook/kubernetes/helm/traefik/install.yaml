@@ -1,6 +1,9 @@
 ---
 - name: Install traefik in cluster // infra/ansible/playbook/kubernetes/helm/traefik/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add Traefik Labs chart repository to Helm

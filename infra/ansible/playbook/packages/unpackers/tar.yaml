@@ -1,6 +1,9 @@
 ---
 - name: Installing tar // infra/ansible/playbook/packages/unpackers/tar.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Install tar

@@ -1,6 +1,9 @@
 ---
 - name: Installing CRI-O // infra/ansible/playbook/packages/cri/cri-o/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Adding a CRI-O repository

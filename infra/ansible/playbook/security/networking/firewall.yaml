@@ -1,6 +1,9 @@
 ---
 - name: Firewall setup // infra/ansible/playbook/security/networking/firewall.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Enabled firewalld service

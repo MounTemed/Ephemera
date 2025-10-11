@@ -1,6 +1,9 @@
 ---
 - name: Temporarily disable firewalld // infra/ansible/playbook/system/network/firewalld.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Disable firewall

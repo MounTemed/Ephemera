@@ -1,6 +1,9 @@
 ---
 - name: Disable ipv6 // infra/ansible/playbook/system/network/ipv6.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Disable ipv6 all

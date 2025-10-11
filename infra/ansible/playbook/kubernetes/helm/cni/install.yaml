@@ -1,6 +1,9 @@
 ---
 - name: Installing CNI Cilium in a cluster an helm // infra/ansible/playbook/kubernetes/helm/cni/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add Cilium chart repository to Helm

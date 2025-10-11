@@ -1,6 +1,9 @@
 ---
 - name: Adding a new user // infra/ansible/playbook/security/users/user.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: New user without root rights

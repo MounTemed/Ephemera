@@ -1,6 +1,9 @@
 ---
 - name: Installing node-exporter in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/node-exporter.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add node-exporter chart repository to Helm

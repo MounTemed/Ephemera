@@ -1,6 +1,9 @@
 ---
 - name: Setting up kubeadm // infra/ansible/playbook/kubernetes/default/kubeadm.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Initialize Kubernetes cluster

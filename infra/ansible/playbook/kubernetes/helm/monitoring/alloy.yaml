@@ -1,8 +1,10 @@
 ---
 - name: Installing Alloy // infra/ansible/playbook/kubernetes/helm/alloy/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
-
   tasks:
     - name: Copy the required values.yaml
       ansible.builtin.copy:

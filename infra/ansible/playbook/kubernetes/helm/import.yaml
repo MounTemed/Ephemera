@@ -2,7 +2,7 @@
 - name: Installing Helm
   ansible.builtin.import_playbook: ./install.yaml
 
-- name: Settings CNI
+- name: Installing CNI
   ansible.builtin.import_playbook: ./cni/install.yaml
 
 - name: Installing Metallb

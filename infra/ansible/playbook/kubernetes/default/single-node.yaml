@@ -1,6 +1,9 @@
 ---
 - name: Single node cluster setup // infra/ansible/playbook/kubernetes/default/single-node.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Untaint control plane nodes

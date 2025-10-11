@@ -1,6 +1,9 @@
 ---
 - name: Installing Nexus in a cluster // infra/ansible/playbook/kubernetes/helm/nexus/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add Nexus chart repository to Helm

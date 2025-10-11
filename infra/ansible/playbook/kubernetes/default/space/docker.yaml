@@ -1,6 +1,9 @@
 ---
 - name: Create docker-registry secrets // infra/ansible/playbook/kubernetes/default/secrets/docker.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
 
   vars:

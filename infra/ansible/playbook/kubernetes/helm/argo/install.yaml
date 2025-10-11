@@ -1,6 +1,9 @@
 ---
 - name: Installing ArgoCD // infra/ansible/playbook/kubernetes/helm/argo/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
 
   tasks:

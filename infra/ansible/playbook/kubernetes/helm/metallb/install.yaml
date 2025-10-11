@@ -1,6 +1,9 @@
 ---
 - name: Installing MettaLB in a cluster an helm // infra/ansible/playbook/kubernetes/helm/metallb/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add MettaLB chart repository to Helm
@@ -10,7 +13,7 @@
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
-        src: ../../../../../../kubernetes/settings/helm/mettalb/values.yaml
+        src: ../../../../../../kubernetes/settings/helm/metallb/values.yaml
         dest: /home/user/metallb-values.yaml
         remote_src: false
 

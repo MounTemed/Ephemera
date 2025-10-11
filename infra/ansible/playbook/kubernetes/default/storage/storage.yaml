@@ -1,6 +1,9 @@
 ---
 - name: Creating storageclass // infra/ansible/playbook/kubernetes/default/storage/storage.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Download local-path-provisioner manifest

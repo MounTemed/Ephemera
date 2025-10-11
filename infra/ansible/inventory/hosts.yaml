@@ -5,12 +5,12 @@ russian:
         prod:
           hosts:
             host1:
-              ansible_host: IPv4
+              ansible_host: IPv4 # There should be something in production, but we don't have production
               ansible_user: root
-        QA:
+        test:
           hosts:
             host1:
-              ansible_host: IPv4
+              ansible_host: IPv4 # floating_ipv4 terraform
               ansible_user: root
         dev:
           hosts:

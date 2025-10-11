@@ -1,6 +1,9 @@
 ---
 - name: Installing Prometheus in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/prometheus-comm.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add Prometheus chart repository to Helm

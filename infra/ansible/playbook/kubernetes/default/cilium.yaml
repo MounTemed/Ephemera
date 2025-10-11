@@ -1,6 +1,9 @@
 ---
 - name: Install and deploy Cilium // infra/ansible/playbook/kubernetes/default/cilium.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Download cilium-cli archive

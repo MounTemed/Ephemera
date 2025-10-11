@@ -1,6 +1,9 @@
 ---
 - name: Installing helm // infra/ansible/playbook/kubernetes/helm/install.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: We get the required .sh file

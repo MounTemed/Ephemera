@@ -1,6 +1,9 @@
 ---
 - name: Creating PVCs // infra/ansible/playbook/kubernetes/default/storage/pvc.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: PersistentVolumeClaim for gitlab

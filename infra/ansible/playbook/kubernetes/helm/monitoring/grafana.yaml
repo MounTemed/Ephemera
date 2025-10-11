@@ -1,6 +1,9 @@
 ---
 - name: Installing grafana in a cluster // infra/ansible/playbook/kubernetes/helm/monitoring/grafana.yaml
-  hosts: dev
+  hosts:
+    - dev
+    - test
+    - prod
   become: true
   tasks:
     - name: Add Grafana chart repository to Helm
