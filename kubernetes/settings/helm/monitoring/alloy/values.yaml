@@ -2,3 +2,33 @@ global:
   image:
     pullSecrets:
       - name: docker-secrets
+
+alloy:
+  configMap:
+    context: |-
+      logging {
+        level = "info"
+        format = "logfmt"
+      }
+
+      discovery.kubernetes "pods" {
+        role = "pod"
+      }
+      discovery.kubernetes "nodes" {
+        role = "node"
+      }
+
+      prometheus.scrape "k8s_pods" {
+        targets    = discovery.kubernetes.pods.targets
+        forward_to = [prometheus.remote_write.prometheus.receiver]
+      }
+      prometheus.scrape "k8s_nodes" {
+        targets    = discovery.kubernetes.nodes.targets
+        forward_to = [prometheus.remote_write.prometheus.receiver]
+      }
+
+      prometheus.remote_write "prometheus" {
+        endpoint {
+          url = "http://prometheus-server:80/api/v1/write"
+        }
+      }
