@@ -1,2 +1,7 @@
 imagePullSecrets:
   - name: docker-secrets
+
+pometheus-node-exporter:
+  enabled: true
+  rbac:
+    pspEnabled: false

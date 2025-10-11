@@ -4,6 +4,3 @@
 
 - name: Installing prometheus
   ansible.builtin.import_playbook: ./prometheus-comm.yaml
-
-- name: Installing Node-exporter
-  ansible.builtin.import_playbook: ./node-exporter.yaml
