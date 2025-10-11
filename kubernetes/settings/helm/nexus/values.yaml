@@ -3,3 +3,12 @@ image:
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: docker-secrets
+
+replicaCount: 1
+
+serviceAccount:
+  create: true
+
+service:
+  type: "ClusterIP"
+  port: 8081
