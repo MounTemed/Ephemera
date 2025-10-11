@@ -4,6 +4,7 @@ metadata:
   name: "{{ include "ephemera.fullname" . }}-test-connection"
   labels:
     {{- include "ephemera.labels" . | nindent 4 }}
+  namespace: nm-app
   annotations:
     "helm.sh/hook": test
 spec:

@@ -4,12 +4,14 @@ metadata:
   name: {{ include "ephemera.fullname" . }}
   labels:
     {{- include "ephemera.labels" . | nindent 4 }}
+  namespace: nm-app
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: 8080
       protocol: TCP
       name: http
   selector:
     {{- include "ephemera.selectorLabels" . | nindent 4 }}
+

@@ -4,6 +4,7 @@ metadata:
   name: {{ include "ephemera.fullname" . }}
   labels:
     {{- include "ephemera.labels" . | nindent 4 }}
+  namespace: nm-app
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
