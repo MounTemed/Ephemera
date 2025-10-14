@@ -52,9 +52,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "ephemera.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "ephemera.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
+{{- if .Values.serviceAccount.create -}}
+{{ include "ephemera.fullname" . }}
+{{- else -}}
+{{ .Values.serviceAccount.name | default (include "ephemera.fullname" .) }}
+{{- end -}}
 {{- end }}

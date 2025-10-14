@@ -1,7 +1,7 @@
 replicaCount: 5
 
 image:
-  repository: docker.io/laimick/ephemera:latest
+  repository: docker.io/laimick/ephemera
   pullPolicy: IfNotPresent
   tag: "latest"
 
@@ -10,14 +10,13 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
-serviceAccount:
-  create: true
-  automount: true
-  annotations: {}
-  name: ""
-
 podAnnotations: {}
 podLabels: {}
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: app-ephemera
 
 podSecurityContext: {}
 
