@@ -1,0 +1,25 @@
+---
+- name: Creating PVs // infra/ansible/playbook/kubernetes/default/storage/pv.yaml
+  hosts:
+    - dev
+    - test
+    - prod
+  become: true
+  tasks:
+    - name: PersistentVolume for gitlab
+      kubernetes.core.k8s:
+        api_version: v1
+        kind: PersistentVolume
+        name: gitlab-pv
+        namespace: nm-gitlab
+        state: present
+        resource_definition:
+          spec:
+            capacity:
+              storage: 50Gi
+            accessModes:
+              - ReadWriteOnce
+            storageClassName: standard
+            persistentVolumeReclaimPolicy: Retain
+            hostPath:
+              path: /data/gitlab

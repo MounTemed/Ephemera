@@ -1,0 +1,5 @@
+k8s-checkov:
+k8s-kubelinter:
+k8s-kubespace:
+k8s-kics:
+k8s-trivy:

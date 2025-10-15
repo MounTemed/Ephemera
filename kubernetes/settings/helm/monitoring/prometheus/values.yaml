@@ -5,3 +5,10 @@ pometheus-node-exporter:
   enabled: true
   rbac:
     pspEnabled: false
+
+server:
+  persistentVolume:
+    enabled: true
+    existingClaim: "prometheus-pvc"
+    accessMode:
+      - ReadWriteOnce

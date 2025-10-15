@@ -18,6 +18,17 @@ global:
   edition: ce
   minio:
     enabled: true
+    persistence:
+      enabled: true
+      volumeName: gitlab-pv
+      size: 50Gi
+      storageClass: ""
+    init:
+      image:
+        repository: quay.io/minio/minio
+        tag: latest
+        pullPolicy: IfNotPresent
+      script:
 
 gitlab-runner:
   install: true

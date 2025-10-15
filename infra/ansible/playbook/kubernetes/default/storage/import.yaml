@@ -3,3 +3,6 @@
 
 - name: Creating a PersistentVolumeClaim
   ansible.builtin.import_playbook: ./pvc.yaml
+
+- name: Creating a PersistentVolume
+  ansible.builtin.import_playbook: ./pv.yaml

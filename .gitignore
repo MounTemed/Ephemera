@@ -8,3 +8,6 @@ infra/terraform/tfplan
 
 # ansible
 .ansible/
+
+# todo
+repositories/pipeline/todo

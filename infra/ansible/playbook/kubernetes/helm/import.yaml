@@ -17,11 +17,11 @@
 - name: Installing Nexus
   ansible.builtin.import_playbook: ./nexus/install.yaml
 
-- name: Installing Gitlab
-  ansible.builtin.import_playbook: ./gitlab/install.yaml
-
 - name: Installing Monitoring
   ansible.builtin.import_playbook: ./monitoring/import.yaml
 
 - name: Installing ArgoCD
   ansible.builtin.import_playbook: ./argo/install.yaml
+
+- name: Installing Gitlab
+  ansible.builtin.import_playbook: ./gitlab/install.yaml
