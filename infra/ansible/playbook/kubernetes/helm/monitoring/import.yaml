@@ -4,3 +4,6 @@
 
 - name: Installing prometheus
   ansible.builtin.import_playbook: ./prometheus-comm.yaml
+
+- name: Installing alloy
+  ansible.builtin.import_playbook: ./alloy.yaml
