@@ -16,6 +16,6 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: app-ephemera
+        - name: ephemera
           port: 8080
           kind: Service
