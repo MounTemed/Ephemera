@@ -14,6 +14,7 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/cert-manager/values.yaml
         dest: /home/user/cert-manager.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install cert-manager

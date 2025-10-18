@@ -10,16 +10,25 @@
       ansible.builtin.copy:
         src: ./kubernetes.repo.j2
         dest: /etc/yum.repos.d/kubernetes.repo
+        mode: "644"
         follow: true
         remote_src: false
+
+    - name: Check that kubectl is not installed
+      ansible.builtin.command: which kubectl
+      changed_when: false
+      ignore_errors: true
+      register: check_kubectl
 
     - name: Install kubelet, kubeadm, kubectl
       ansible.builtin.dnf:
         name: [kubelet, kubeadm, kubectl]
-        state: latest
+        state: present
+      when: check_kubectl.rc != 0
 
     - name: Start and enable kubelet
       ansible.builtin.systemd_service:
         name: kubelet
         state: started
         enabled: true
+      when: check_kubectl.rc != 0

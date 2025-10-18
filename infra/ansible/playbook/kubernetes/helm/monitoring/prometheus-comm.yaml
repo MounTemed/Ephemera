@@ -15,6 +15,7 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/monitoring/prometheus/values.yaml
         dest: /home/user/prometheus.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install Prometheus

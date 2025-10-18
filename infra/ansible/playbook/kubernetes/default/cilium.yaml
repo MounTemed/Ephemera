@@ -6,22 +6,33 @@
     - prod
   become: true
   tasks:
+    - name: Is CNI Cilium installed before
+      ansible.builtin.command: which cilium
+      register: cilium_check
+      changed_when: false
+      ignore_errors: true
+
     - name: Download cilium-cli archive
       ansible.builtin.get_url:
         url: https://github.com/cilium/cilium-cli/releases/latest/download/cilium-linux-amd64.tar.gz
         dest: /tmp/cilium-linux-amd64.tar.gz
         mode: "0644"
+      when: cilium_check.rc != 0
 
     - name: Extract cilium-cli to /usr/local/bin
       ansible.builtin.unarchive:
         src: /tmp/cilium-linux-amd64.tar.gz
         dest: /usr/local/bin
         remote_src: true
+      when: cilium_check.rc != 0
 
     - name: Remove cilium-cli archive
       ansible.builtin.file:
         path: /tmp/cilium-linux-amd64.tar.gz
         state: absent
+      when: cilium_check.rc != 0
 
     - name: Install Cilium into the cluster
       ansible.builtin.command: /usr/local/bin/cilium install
+      changed_when: false
+      when: cilium_check.rc != 0

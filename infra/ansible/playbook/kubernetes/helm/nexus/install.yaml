@@ -15,6 +15,7 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/nexus/values.yaml
         dest: /home/user/nexus.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install Nexus

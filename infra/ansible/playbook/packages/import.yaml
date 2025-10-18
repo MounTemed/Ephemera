@@ -5,6 +5,9 @@
 - name: Installing tar
   ansible.builtin.import_playbook: ./unpackers/tar.yaml
 
+# - name: Set containerd as CRI
+#   ansible.builtin.import_playbook: ./containerd/install.yaml
+
 - name: Set CRI-O as CRI
   ansible.builtin.import_playbook: ./cri/cri-o/install.yaml
 

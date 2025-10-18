@@ -8,9 +8,25 @@
   tasks:
     - name: Perform a DNF system update
       ansible.builtin.dnf:
-        name: "*"
-        state: latest
+        state: present
+        update_only: true
         update_cache: true
+
+    - name: Import ELRepo GPG key
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+
+    - name: Add ELRepo repository for EL9
+      ansible.builtin.dnf:
+        name: https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm
+        state: present
+
+    - name: Install latest mainline kernel from ELRepo
+      ansible.builtin.dnf:
+        name: kernel-ml
+        enablerepo: elrepo-kernel
+        state: present
 
     - name: Reboot system
       ansible.builtin.reboot:

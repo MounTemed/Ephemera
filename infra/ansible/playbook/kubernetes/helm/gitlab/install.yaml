@@ -14,6 +14,7 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/gitlab/values.yaml
         dest: /home/user/gitlab-ce.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install gitlab-ce

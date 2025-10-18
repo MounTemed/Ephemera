@@ -16,24 +16,28 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/argocd/values-argo.yaml
         dest: /home/user/argo-standart.yaml
+        mode: "644"
         remote_src: false
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/argocd/values-rollouts.yaml
         dest: /home/user/argo-rollouts.yaml
+        mode: "644"
         remote_src: false
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/argocd/values-events.yaml
         dest: /home/user/argo-events.yaml
+        mode: "644"
         remote_src: false
 
     - name: Copy the required values.yaml
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/base/argocd/config.yaml
         dest: /home/user/argo-config.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install ArgoCD

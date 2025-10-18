@@ -15,12 +15,14 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/metallb/values.yaml
         dest: /home/user/metallb-values.yaml
+        mode: "644"
         remote_src: false
 
     - name: Copy the required config.yaml
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/base/metallb/config.yaml
         dest: /home/user/metallb-config.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install MettaLB

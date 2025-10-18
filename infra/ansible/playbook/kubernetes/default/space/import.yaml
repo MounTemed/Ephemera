@@ -1,3 +1,4 @@
+---
 - name: Creating a namespace
   ansible.builtin.import_playbook: ./namespace.yaml
 

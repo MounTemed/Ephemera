@@ -15,6 +15,7 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/traefik/values.yaml
         dest: /home/user/traefik.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install traefik

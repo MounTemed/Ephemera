@@ -15,6 +15,7 @@
       ansible.builtin.copy:
         src: ../../../../../../kubernetes/settings/helm/monitoring/grafana/values.yaml
         dest: /home/user/grafana.yaml
+        mode: "644"
         remote_src: false
 
     - name: Install Grafana
