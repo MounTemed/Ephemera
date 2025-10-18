@@ -9,4 +9,4 @@
     - name: Install yum
       ansible.builtin.dnf:
         name: yum-utils
-        state: latest
+        state: present

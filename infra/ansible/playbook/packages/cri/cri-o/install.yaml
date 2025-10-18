@@ -10,12 +10,13 @@
       ansible.builtin.copy:
         src: ./cri-o.repo.j2
         dest: /etc/yum.repos.d/cri-o.repo
+        mode: "644"
         remote_src: false
 
     - name: Install CRI-O
       ansible.builtin.dnf:
         name: cri-o
-        state: latest
+        state: present
 
     - name: Launching CRI-O service
       ansible.builtin.systemd_service:
