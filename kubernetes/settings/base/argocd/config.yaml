@@ -20,6 +20,8 @@ spec:
       prune: true
       allowEmpty: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -43,6 +45,8 @@ spec:
       prune: true
       allowEmpty: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -55,14 +59,18 @@ spec:
   source:
     repoURL: https://github.com/MounTemed/Ephemera
     targetRevision: main
-    path: kubernetes/apps/
-    directory:
-      recurse: true
+    path: kubernetes/apps/ephemera
+    helm:
+      releaseName: ephemera
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
+    namespace: default
   syncPolicy:
     automated:
       enabled: true
       prune: true
-      allowEmpty: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
