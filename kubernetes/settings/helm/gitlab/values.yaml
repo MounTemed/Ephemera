@@ -1,16 +1,12 @@
 global:
-  PullSecrets:
-    - name: docker-secrets
   hosts:
-    domain: gitlab.lune.su
+    domain: lune.su
+    hostname: gitlab
     https: true
   ingress:
-    provider: traefik
     enabled: true
-    path: /
-    tls:
-      enabled: true
-      SecretName: gitlab-lune-tls
+    provider: traefik
+    class: traefik
     configureCertmanager: false
   initialRootPassword:
     secret: gitlab-secret-password
@@ -18,17 +14,6 @@ global:
   edition: ce
   minio:
     enabled: true
-    persistence:
-      enabled: true
-      volumeName: gitlab-pv
-      size: 50Gi
-      storageClass: ""
-    init:
-      image:
-        repository: quay.io/minio/minio
-        tag: latest
-        pullPolicy: IfNotPresent
-      script:
 
 gitlab-runner:
   install: true

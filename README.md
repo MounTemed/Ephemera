@@ -17,9 +17,6 @@
 
 <h1></h1>
 
-> [!NOTE]
-> This repository is under active development, it is not working yet!!!!
-
 <div align="center">
   <h3> ❄️ Overview ✨ </h3>
 </div>
@@ -29,15 +26,15 @@
 
 - **Effortless Installation** – Get a fully functional Kubernetes orchestrator up and running quickly and smoothly
 - **Perfect Reproducibility** – Simply replace the secrets, and you're guaranteed a 100% idempotent, working environment every single time. Consistency is key
-- **Rigorous CI/CD Pipeline** – For every pull request, a dedicated VPC is automatically provisioned in Timeweb Cloud using Terraform, where we run the most thorough and demanding tests to ensure unwavering reliability
+- **Rigorous CI/CD pipeline** - for every pull request, we run the most thorough and demanding tests to ensure unrivaled reliability
 
 </details>
 
 <details>
 <summary>🛠️ Technologies</summary>
 
-| Technology                         | Purpose                                               |
-|------------------------------------|-------------------------------------------------------|
+| Technology                        | Purpose                                                |
+|-----------------------------------|--------------------------------------------------------|
 | **Golang**                        | Foundation for high-performance application code       |
 | **Podman**                        | Builds secure, rootless containers                     |
 | **CRI-O**                         | Lightweight, Kubernetes-native container runtime       |
@@ -52,7 +49,6 @@
 | **Alloy**                         | Optimized data collection                              |
 | **Traefik**                       | Fast reverse proxy server                              |
 | **GitLab CE**                     | Advanced, self-hosted CI/CD pipeline                   |
-| **OpenTofu**                      | We manage infrastructure as code                       |
 
 </details>
 

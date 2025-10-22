@@ -3,3 +3,6 @@ imagePullSecrets:
 
 operator:
   replicas: 1
+
+hostFirewall:
+  enabled: true

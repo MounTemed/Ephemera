@@ -3,7 +3,7 @@ replicaCount: 5
 image:
   repository: docker.io/laimick/ephemera
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "1.0"
 
 imagePullSecrets:
   - name: docker-secrets
@@ -36,8 +36,11 @@ ingress:
   enabled: false
 
 resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
   limits:
-    cpu: 200m
+    cpu: 200m 
     memory: 256Mi
 
 livenessProbe:
@@ -51,3 +54,16 @@ readinessProbe:
 
 autoscaling:
   enabled: false
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - ephemera 
+        topologyKey: kubernetes.io/hostname

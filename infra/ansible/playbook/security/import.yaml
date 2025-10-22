@@ -4,6 +4,3 @@
 
 - name: Adding rootful user
   ansible.builtin.import_playbook: ./users/admin.yaml
-
-- name: Adding rules for the firewall
-  ansible.builtin.import_playbook: ./networking/firewall.yaml
