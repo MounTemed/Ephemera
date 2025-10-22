@@ -1,0 +1,3 @@
+ci:
+  image:
+    name: docker.io/library/golang:alpine

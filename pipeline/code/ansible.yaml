@@ -1,0 +1,11 @@
+code-ansible-yamllint:
+  image:
+    name: docker.io/giantswarm/yamllint:1.37.1
+  script:
+    - yamllint -s infra/ansible/
+
+code-ansible-lint:
+  image:
+    name: docker.io/pipelinecomponents/ansible-lint:edge
+  script:
+    - ansible-lint infra/ansible/*

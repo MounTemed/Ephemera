@@ -1,0 +1,5 @@
+code-gofmt:
+  image:
+    name: docker.io/library/golang:alpine
+  script:
+    - gofmt -e app/main.go

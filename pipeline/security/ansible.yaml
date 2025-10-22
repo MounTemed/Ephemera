@@ -1,0 +1,19 @@
+ansible-checkov:
+  image:
+    name: docker.io/bridgecrew/checkov:latest
+  script:
+    - checkov --skip-path infra/ansible/playbook/kubernetes/default/storage/local-patch.yaml --directory infra/ansible/
+
+ansible-kics:
+  image:
+    name: docker.io/checkmarx/kics:latest
+  script:
+    - kics scan -p 'infra/ansible/'
+
+ansible-steampunk-spotter:
+  image:
+    name: docker.io/library/python:3.13.9-alpine
+
+ansible-semgrep:
+  image:
+    name: docker.io/semgrep/semgrep:latest

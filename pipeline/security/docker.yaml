@@ -1,0 +1,15 @@
+docker-trivy:
+  image:
+    name: docker.io/aquasec/trivy:latest
+
+docker-snyk:
+  image:
+    name: docker.io/snyk/snyk:docker
+
+docker-grype:
+  image:
+    name: docker.io/anchore/grype:latest
+
+dcker-syft:
+  image:
+    name: docker.io/anchore/syft:latest

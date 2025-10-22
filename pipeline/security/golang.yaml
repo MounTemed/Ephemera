@@ -1,0 +1,11 @@
+golang-semgrep:
+  image:
+    name: docker.io/semgrep/semgrep:latest
+
+golang-sonarqube:
+  image:
+    name: docker.io/library/sonarqube:latest
+
+golang-gosec:
+  image:
+    name: docker.io/securego/gosec:latest
