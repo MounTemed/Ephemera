@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: route-gitlab-lune-su
+  namespace: nm-gitlab
+spec:
+  parentRefs:
+    - name: gitlab-traefik-gateway
+      namespace: nm-traefik
+      sectionName: web
+  hostname:
+    - "gitlab.lune.su"
+  rules:
+    - matches:
+        - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+        - name: gitlab-webservice-default
+          port: 8181
+          kind: Service
