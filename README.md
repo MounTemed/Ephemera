@@ -55,7 +55,49 @@
 <details>
 <summary>📦 Installation</summary>
 
-🚧 Coming soon...
+1. **Copy the repository**:
+
+  ```bash
+  git clone https://github.com/MounTemed/ephemera
+  ```
+
+
+2. **Go to the downloaded repository**:
+
+  ```bash
+  cd ephemera
+  ```
+
+
+3. **Configure infra/ansible/inventory/hosts.yaml to the desired IPv4**:
+
+  ```yaml
+  russian:
+    children:
+      peaceful:
+        children:
+          prod:
+            hosts:
+              host1:
+                ansible_host: 192.168.0.1 # There should be something in production, but we don't have production
+                ansible_user: root
+          test:
+            hosts:
+              host1:
+                ansible_host: 192.168.0.2 # CHANGE
+                ansible_user: root
+          dev:
+            hosts:
+              host1:
+                ansible_host: 192.168.0.3 # CHANGE
+                ansible_user: root
+  ```
+
+4. **You can run**:
+
+  ```bash
+  ansible-playbook infra/ansible/playbook/master.yaml --limit dev
+  ```
 
 </details>
 
@@ -63,5 +105,19 @@
 
 <div align="center">
   <h3> ✨ Screenshots ❄️ </h3>
-  <p>Coming soon...</p>
+</div>
+
+<div align="center">
+  <p>Full control, do whatever you want with monitoring 💫</p>
+  <img src="./.github/assets/grafana.png">
+</div>
+
+<div align="center">
+  <p>Just one commit and the code is already on the server! Update without problems, SLO 99% ❄️</p>
+  <img src="./.github/assets/argo.png">
+</div>
+
+<div align="center">
+  <p>GitLab CI is extremely simple, yet very functional ✨</p>
+  <img src="./.github/assets/gitlab.png">
 </div>
