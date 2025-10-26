@@ -13,31 +13,42 @@ spec:
       - http01:
           gatewayHTTPRoute:
             parentRefs:
+              # Argo
               - name: argo-traefik-gateway
                 namespace: nm-traefik
                 kind: Gateway
                 sectionName: web
-              - name: gitlab-traefik-gateway
-                namespace: nm-traefik
-                kind: Gateway
-                sectionName: web
-              - name: gitlab-run-traefik-gateway
-                namespace: nm-traefik
-                kind: Gateway
-                sectionName: web
+
+              # Monitoring
               - name: grafana-traefik-gateway
                 namespace: nm-traefik
                 kind: Gateway
                 sectionName: web
+
+              - name: prometeheus-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+
+              - name: alloy-traefik-gateway
+                namespace: nm-traefik
+                kind: Gateway
+                sectionName: web
+
+              # App
               - name: lune-traefik-gateway
                 namespace: nm-traefik
                 kind: Gateway
                 sectionName: web
-              - name: nexus-traefik-gateway
+
+              # Gitlab
+              - name: gitlab-traefik-gateway
                 namespace: nm-traefik
                 kind: Gateway
                 sectionName: web
-              - name: prometeheus-traefik-gateway
+
+              # Artifactory
+              - name: nexus-traefik-gateway
                 namespace: nm-traefik
                 kind: Gateway
                 sectionName: web
