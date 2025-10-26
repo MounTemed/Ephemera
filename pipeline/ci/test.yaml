@@ -1,0 +1,11 @@
+testing:
+  stage: ci-pull-request
+  image: docker:stable
+  service:
+    - name: docker:dind
+      command: ["dockerd-entrypoint.sh"]
+  script:
+    - docker login -u $NEXUS_USER -p $NEXUS_PASS
+    - docker login $NEXUS_URL
+    - docker build -t $NEXUS_URL/ephemera:$CI_COMMIT_SHA ./app/.
+    - docker push $NEXUS_URL/ephemera:$CI_COMMIT_SHA

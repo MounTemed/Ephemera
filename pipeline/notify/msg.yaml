@@ -1,1 +1,4 @@
 gitlab-msg:
+  stage: gitlab-msg
+  script:
+    -

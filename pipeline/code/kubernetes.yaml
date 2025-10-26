@@ -1,34 +1,40 @@
 code-kubelinter:
+  stage: code-kubelinter
   image:
     name: docker.io/stackrox/kube-linter:latest
   script:
     - kube-linter lint kubernetes/*
 
 code-kubeconfrom:
+  stage: code-kubeconfrom
   image:
     name: ghcr.io/yannh/kubeconform:latest
   script:
     - kubeconform -debug -ignore-missing-schemas -insecure-skip-tls-verify -exit-on-error kubernetes/settings/base/
 
 code-helm-lint:
+  stage: code-helm-lint
   image:
     name: docker.io/alpine/helm:latest
   script:
     - helm lint kubernetes/apps/ephemera/
 
 code-helm-template:
+  stage: code-helm-template
   image:
     name: docker.io/alpine/helm:latest
   script:
     - helm template ephemera-app --values kubernetes/apps/ephemera/values.yaml
 
 code-helm-chart-testing:
+  stage: code-helm-chart-testing
   image:
     name: quay.io/helm/chart-testing:latest
   script:
     - ct install --chart-dirs kubernetes/apps/ephemera/ --charts .
 
 code-kubernetes-yamllint:
+  stage: code-kubernetes-yamllint
   image:
     name: docker.io/giantswarm/yamllint:1.37.1
   script:

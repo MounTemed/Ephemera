@@ -1,15 +1,19 @@
 k8s-checkov:
+  stage: k8s-checkov
   image:
     name: docker.io/bridgecrew/checkov:latest
 
 k8s-kubelinter:
+  stage: k8s-kubelinter
   image:
     name: docker.io/stackrox/kube-linter:latest
 
 k8s-kics:
+  stage: k8s-kics
   image:
     name: docker.io/checkmarx/kics:latest
 
 k8s-trivy:
+  stage: k8s-trivy
   image:
     name: docker.io/aquasec/trivy:latest

@@ -27,37 +27,31 @@ stages:
   - code-gofmt
   - code-kubelinter
   - code-kubeconfrom
-  - code-kubectl-validate
-  - code-helm-Lint
-  - code-helm-chart-testing
+  - code-helm-lint
   - code-helm-template
+  - code-helm-chart-testing
   - code-kubernetes-yamllint
 
   # docker
-  - build
-  - push
+  - ci-pull-request
+  - ci-deploy
 
   #sast
   - ansible-checkov
   - ansible-kics
-  - ansible-steampunk-spotter
-  - ansible-semgrep
-  - golang-semgrep
   - golang-sonarqube
   - golang-gosec
   - docker-trivy
   - docker-snyk
-  - docker-clair
   - docker-grype
   - docker-anchore
   - k8s-checkov
   - k8s-kubelinter
-  - k8s-kubespace
   - k8s-kics
   - k8s-trivy
 
   # ansible
-  - ansible-molecule
+  - ansible-deploy-test
 
   # notify
   - gitlab-msg
