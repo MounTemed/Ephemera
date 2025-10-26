@@ -9,6 +9,3 @@ pometheus-node-exporter:
 server:
   persistentVolume:
     enabled: true
-    existingClaim: "prometheus-pvc"
-    accessMode:
-      - ReadWriteOnce
