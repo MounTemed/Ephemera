@@ -10,7 +10,7 @@ russian:
         test:
           hosts:
             host1:
-              ansible_host: IPv4 # floating_ipv4 terraform
+              ansible_host: IPv4
               ansible_user: root
         dev:
           hosts:
