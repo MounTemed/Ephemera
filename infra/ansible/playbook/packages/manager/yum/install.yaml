@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Install yum
       ansible.builtin.dnf:

@@ -5,7 +5,6 @@
     - test
     - prod
   become: true
-
   vars:
     docker_registry_username: "{{ docker_login }}"
     docker_registry_password: "{{ docker_password }}"

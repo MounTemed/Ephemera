@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Download local-path-provisioner manifest
       ansible.builtin.copy:

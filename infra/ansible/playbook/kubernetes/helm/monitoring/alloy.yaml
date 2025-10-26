@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Copy the required values.yaml
       ansible.builtin.copy:

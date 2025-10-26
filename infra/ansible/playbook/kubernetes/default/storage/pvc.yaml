@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: PersistentVolumeClaim for gitlab
       kubernetes.core.k8s:

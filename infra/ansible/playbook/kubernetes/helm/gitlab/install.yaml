@@ -4,6 +4,7 @@
     - dev
     - prod
   become: true
+
   tasks:
     - name: Add gitlab chart repository to Helm
       kubernetes.core.helm_repository:

@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Add Grafana chart repository to Helm
       kubernetes.core.helm_repository:

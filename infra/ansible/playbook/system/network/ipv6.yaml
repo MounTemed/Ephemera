@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Disable ipv6 all
       ansible.posix.sysctl:

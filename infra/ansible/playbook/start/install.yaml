@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Perform a DNF system update
       ansible.builtin.dnf:

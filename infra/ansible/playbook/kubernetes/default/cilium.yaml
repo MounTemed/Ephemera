@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Is CNI Cilium installed before
       ansible.builtin.command: which cilium

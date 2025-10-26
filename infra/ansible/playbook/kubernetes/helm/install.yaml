@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Did we install Helm
       ansible.builtin.command: when helm

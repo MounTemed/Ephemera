@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Adding a CRI-O repository
       ansible.builtin.copy:

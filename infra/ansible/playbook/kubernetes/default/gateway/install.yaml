@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: Download Gateway file
       ansible.builtin.get_url:

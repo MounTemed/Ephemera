@@ -5,6 +5,7 @@
     - test
     - prod
   become: true
+
   tasks:
     - name: New user without root rights
       ansible.builtin.user:
