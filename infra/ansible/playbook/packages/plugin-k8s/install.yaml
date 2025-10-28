@@ -1,9 +1,6 @@
 ---
 - name: Loading python and after the Kubernetes library // infra/ansible/playbook/packages/plugin-k8s/install.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: all
   become: true
 
   tasks:

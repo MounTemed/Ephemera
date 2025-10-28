@@ -1,19 +1,18 @@
-russian:
+all:
   children:
-    peaceful:
+    russian:
       children:
-        prod:
-          hosts:
-            host1:
-              ansible_host: IPv4 # There should be something in production, but we don't have production
-              ansible_user: root
-        test:
-          hosts:
-            host1:
-              ansible_host: IPv4
-              ansible_user: root
-        dev:
-          hosts:
-            host1:
-              ansible_host: IPv4
-              ansible_user: root
+        peaceful:
+          children:
+            dev:
+              children:
+                masters:
+                  hosts:
+                    master1:
+                      ansible_host: 81.200.152.25
+                      ansible_user: root
+                workers:
+                  hosts:
+                    worker1:
+                      ansible_host: 92.63.176.186
+                      ansible_user: root

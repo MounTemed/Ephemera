@@ -1,0 +1,8 @@
+---
+- name: Disable swap using mount module // infra/ansible/playbook/system/swap/disable.yaml
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Turn off all swap devices
+      ansible.builtin.shell: swapoff -a

@@ -4,3 +4,15 @@
 
 - name: Disable ivp6
   ansible.builtin.import_playbook: ./network/ipv6.yaml
+
+# - name: Settings kernel
+#   ansible.builtin.import_playbook: ./kernel/modprobe.yaml
+
+# - name: Settings sysctl
+#   ansible.builtin.import_playbook: ./sysctl/k8s.yaml
+
+- name: Disable swap
+  ansible.builtin.import_playbook: ./swap/disable.yaml
+
+- name: Update system
+  ansible.builtin.import_playbook: ./update.yaml

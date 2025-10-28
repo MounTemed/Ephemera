@@ -1,9 +1,6 @@
 ---
 - name: Installing full Kubernetes // infra/ansible/playbook/kubernetes/default/install.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: all
   become: true
 
   tasks:

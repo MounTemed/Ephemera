@@ -1,9 +1,6 @@
 ---
 - name: Creating PVCs // infra/ansible/playbook/kubernetes/default/storage/pvc.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: masters
   become: true
 
   tasks:

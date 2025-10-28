@@ -1,8 +1,6 @@
 ---
 - name: Installing gitlab in a cluster // infra/ansible/playbook/kubernetes/helm/gitlab/install.yaml
-  hosts:
-    - dev
-    - prod
+  hosts: masters
   become: true
 
   tasks:

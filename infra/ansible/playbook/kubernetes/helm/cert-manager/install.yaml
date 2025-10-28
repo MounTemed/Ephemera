@@ -1,8 +1,6 @@
 ---
 - name: Installing cert-manager in a cluster an helm // infra/ansible/playbook/kubernetes/helm/cert-manager/install.yaml
-  hosts:
-    - dev
-    - prod
+  hosts: masters
   become: true
 
   tasks:

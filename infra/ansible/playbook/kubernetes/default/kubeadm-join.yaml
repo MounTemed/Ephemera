@@ -1,0 +1,11 @@
+---
+- name: kubeadm join worker-node // infra/ansible/playbook/kubernetes/default/kubeadm-join.yaml
+  hosts: workers
+  become: true
+
+  tasks:
+    - name: Join as worker
+      ansible.builtin.shell: "{{ hostvars[groups['masters'][0]]['worker_join_command'] | default('') }}"
+      register: worker_join
+      changed_when: worker_join.rc == 0
+      failed_when: worker_join.rc != 0

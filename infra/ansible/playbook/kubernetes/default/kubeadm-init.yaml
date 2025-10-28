@@ -1,0 +1,50 @@
+---
+- name: kubeadm init master-node // infra/ansible/playbook/kubernetes/default/kubeadm-init.yaml
+  hosts: masters
+  become: true
+
+  tasks:
+    - name: Initialize Kubernetes cluster
+      ansible.builtin.command: kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=unix:///var/run/crio/crio.sock --apiserver-advertise-address={{ ansible_default_ipv4.address }}
+      args:
+        creates: /etc/kubernetes/admin.conf
+      register: kubeadm_init
+      changed_when: kubeadm_init.rc == 0
+
+    - name: Setup kubeconfig for root
+      block:
+        - name: Create .kube directory
+          ansible.builtin.file:
+            path: /root/.kube
+            state: directory
+            owner: root
+            group: root
+            mode: "0755"
+            recurse: true
+
+        - name: Copy admin.conf to root
+          ansible.builtin.copy:
+            src: /etc/kubernetes/admin.conf
+            dest: /root/.kube/config
+            owner: root
+            group: root
+            mode: "0600"
+            remote_src: true
+
+        - name: Persist KUBECONFIG in bashrc
+          ansible.builtin.lineinfile:
+            path: /root/.bashrc
+            line: "export KUBECONFIG=/root/.kube/config"
+            insertafter: EOF
+      when: kubeadm_init.changed
+
+    - name: Generate worker join command (simple token)
+      ansible.builtin.shell: kubeadm token create --print-join-command
+      register: worker_join_cmd
+      when: kubeadm_init.changed
+      changed_when: false
+
+    - name: Save worker join fact (для join.yaml)
+      ansible.builtin.set_fact:
+        worker_join_command: "{{ worker_join_cmd.stdout_lines[0] }}"
+      when: kubeadm_init.changed

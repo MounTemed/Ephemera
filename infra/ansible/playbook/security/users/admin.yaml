@@ -1,9 +1,6 @@
 ---
 - name: Adding a new user // infra/ansible/playbook/security/users/admin.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: all
   become: true
 
   tasks:

@@ -8,5 +8,8 @@
 - name: Set CRI-O as CRI
   ansible.builtin.import_playbook: ./cri/cri-o/install.yaml
 
+# - name: Installing nftables and delete iptables
+#   ansible.builtin.import_playbook: ./nftables/install.yaml
+
 - name: Install kubernetes ansible library
   ansible.builtin.import_playbook: ./plugin-k8s/install.yaml
