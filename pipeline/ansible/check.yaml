@@ -2,3 +2,10 @@ ansible-molecule:
   stage: ansible-deploy-test
   image:
     name: docker.io/alpine/ansible:latest
+  script:
+    - python3 -m pip install molecule ansible-core ansible-creator # Install molecule
+    - python3 -m pip install --user "molecule-plugins[podman]" # Install backend Podman
+
+    - ansible-creator init  playbook . /tmp/testing/ && cd /tmp/testing # Create forest
+    - molecule init scenario linux # init testing molecule
+    # TODO

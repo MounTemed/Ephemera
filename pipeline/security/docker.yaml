@@ -46,9 +46,6 @@ docker-snyk:
 docker-grype:
   stage: docker-grype
   image:
-    name: docker:latest
-
-docker-anchore:
-  stage: docker-anchore
-  image:
-    name: docker.io/anchore/syft:latest
+    name: docker.io/anchore/grype:latest
+  script:
+    - grype .

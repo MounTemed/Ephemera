@@ -1,0 +1,16 @@
+---
+all:
+  children:
+    webservers:
+      hosts:
+        kubernetes-server:
+          ansible_host: kubernetes-server
+          container_image: docker.io/library/almalinux:latest
+          container_command: /sbin/init
+          container_privileged: true
+      vars:
+        http_port: 8080
+        server_name: test_kubernetes
+        required_packages:
+          - python3
+          - systemd

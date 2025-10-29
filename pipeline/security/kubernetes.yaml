@@ -1,19 +1,24 @@
 k8s-checkov:
   stage: k8s-checkov
+  allow_failure: true
   image:
     name: docker.io/bridgecrew/checkov:latest
-
-k8s-kubelinter:
-  stage: k8s-kubelinter
-  image:
-    name: docker.io/stackrox/kube-linter:latest
+    entrypoint:
+      - "/usr/bin/env"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  rules:
+    - if: $SAST_DISABLED
+      when: never
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - "kubernetes/*.yaml"
+  script:
+    - script -q -c 'checkov -d . ; echo $? > CKVEXIT'
+    - exit $(cat CKVEXIT)
 
 k8s-kics:
   stage: k8s-kics
   image:
     name: docker.io/checkmarx/kics:latest
-
-k8s-trivy:
-  stage: k8s-trivy
-  image:
-    name: docker.io/aquasec/trivy:latest
+  script:
+    - scan -p kubernetes/*

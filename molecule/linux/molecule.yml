@@ -1,0 +1,14 @@
+---
+dependecy:
+  name: galaxy
+  options:
+    requirements-file: ../requirements.yaml
+
+ansible:
+  cfg:
+    defaults:
+      collections_path: collections
+      inventory: infra/ansible/inventory/hosts.yaml
+
+scenario:
+  test_sequence:

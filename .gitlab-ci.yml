@@ -39,16 +39,13 @@ stages:
   #sast
   - ansible-checkov
   - ansible-kics
-  - golang-sonarqube
   - golang-gosec
   - docker-trivy
   - docker-snyk
   - docker-grype
   - docker-anchore
   - k8s-checkov
-  - k8s-kubelinter
   - k8s-kics
-  - k8s-trivy
 
   # ansible
   - ansible-deploy-test
