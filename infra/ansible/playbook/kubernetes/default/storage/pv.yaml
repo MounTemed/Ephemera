@@ -1,9 +1,6 @@
 ---
 - name: Creating PVs // infra/ansible/playbook/kubernetes/default/storage/pv.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: masters
   become: true
 
   tasks:

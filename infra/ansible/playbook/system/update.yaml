@@ -1,9 +1,6 @@
 ---
-- name: Updating the system and restarting it // infra/ansible/playbook/start/install.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+- name: Updating the system and restarting it // infra/ansible/playbook/system/update.yaml
+  hosts: all
   become: true
 
   tasks:

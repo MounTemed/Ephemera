@@ -1,9 +1,6 @@
 ---
 - name: Installing Alloy // infra/ansible/playbook/kubernetes/helm/alloy/install.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: masters
   become: true
 
   tasks:

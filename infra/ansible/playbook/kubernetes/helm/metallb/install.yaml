@@ -1,11 +1,8 @@
 ---
 - name: Installing MettaLB in a cluster an helm // infra/ansible/playbook/kubernetes/helm/metallb/install.yaml
-  hosts:
-    - dev
-    - test
-    - prod
-
+  hosts: masters
   become: true
+
   tasks:
     - name: Add MettaLB chart repository to Helm
       kubernetes.core.helm_repository:

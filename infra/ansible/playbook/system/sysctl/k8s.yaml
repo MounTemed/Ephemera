@@ -1,0 +1,17 @@
+---
+- name: Adding settings for nftables/iptables // infra/ansible/playbook/system/sysctl/k8s.yaml
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Allow traffic filtering
+      ansible.posix.sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: "1"
+        state: present
+
+    - name: Allow traffic filtering
+      ansible.posix.sysctl:
+        name: net.bridge.bridge-nf-call-ip6tables
+        value: "1"
+        state: present

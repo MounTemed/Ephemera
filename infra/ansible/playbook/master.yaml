@@ -1,8 +1,4 @@
 ---
-- name: System update and restart
-  ansible.builtin.import_playbook: ./start/install.yaml
-  tags: [start]
-
 - name: Setting up our cloud
   ansible.builtin.import_playbook: ./system/import.yaml
   tags: [system]

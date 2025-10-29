@@ -1,9 +1,6 @@
 ---
 - name: Enable Ip_forward // infra/ansible/playbook/system/network/forward.yaml
-  hosts:
-    - dev
-    - test
-    - prod
+  hosts: all
   become: true
 
   tasks:
